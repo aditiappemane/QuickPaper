@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { motion } from "framer-motion";
+import Motion from "@/lib/motion";
 
 export default function NotFound() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-white">
-      <motion.div
+      <Motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="max-w-md w-full text-center"
@@ -31,7 +31,7 @@ export default function NotFound() {
             About QuickPaper
           </Link>
         </div>
-      </motion.div>
+      </Motion.div>
     </div>
   );
 }
