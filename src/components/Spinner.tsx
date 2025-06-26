@@ -1,17 +1,16 @@
-"use client";
 import { motion } from "framer-motion";
 
 export default function Spinner() {
   return (
     <motion.div
-      className="flex items-center justify-center"
-      aria-label="Loading"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
+      className="flex justify-center py-12"
     >
       <motion.div
-        className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"
-        style={{ borderTopColor: "transparent" }}
+        animate={{ rotate: 360 }}
+        transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+        className="w-12 h-12 border-t-4 border-blue-600 border-r-4 border-b-4 border-transparent rounded-full"
       />
     </motion.div>
   );
