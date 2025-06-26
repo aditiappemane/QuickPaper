@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Template from "../Template";
-import { motion } from "framer-motion";
+import Motion from "@/lib/motion";
 
 export default function AboutPage() {
   return (
@@ -9,7 +9,7 @@ export default function AboutPage() {
       <Header />
       <Template>
         <section className="w-full min-h-[60vh] flex items-center justify-center bg-white">
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
@@ -36,7 +36,7 @@ export default function AboutPage() {
                 Next.js, Tailwind CSS, Framer Motion
               </span>
             </div>
-          </motion.div>
+          </Motion.div>
         </section>
       </Template>
       <Footer />
