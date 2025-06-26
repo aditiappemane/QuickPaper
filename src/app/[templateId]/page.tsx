@@ -19,9 +19,11 @@ export default function TemplatePage({
 }: {
   params: { templateId: string };
 }) {
+  const templateId = params.templateId;
+
   const templateData = useMemo(
-    () => templates.find((t) => t.id === params.templateId),
-    [params.templateId]
+    () => templates.find((t) => t.id === templateId),
+    [templateId]
   );
 
   const initialState = useMemo(() => {
@@ -32,7 +34,7 @@ export default function TemplatePage({
 
   const [values, setValues] = useState(initialState);
 
-  if (!templateData) return notFound();
+  if (!templateId || !templateData) return notFound();
 
   const filled = fillTemplate(templateData.template, values);
 
