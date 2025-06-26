@@ -1,9 +1,9 @@
 "use client";
-import { motion } from "framer-motion";
+import Motion from "@/lib/motion";
 
 export default function TemplatePreview({ content }: { content: string }) {
   return (
-    <motion.div
+    <Motion.div
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
@@ -17,6 +17,6 @@ export default function TemplatePreview({ content }: { content: string }) {
           Fill in the form to see your document preview here.
         </div>
       )}
-    </motion.div>
+    </Motion.div>
   );
 }
