@@ -33,7 +33,7 @@ export default function Header() {
             Templates
           </Link>
           <Link
-            href="#about"
+            href="/about"
             className="text-neutral-700 hover:text-blue-600 transition-colors font-medium"
           >
             About
