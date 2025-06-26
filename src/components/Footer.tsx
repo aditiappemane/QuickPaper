@@ -1,8 +1,8 @@
-import { motion } from "framer-motion";
+import Motion from "@/lib/motion";
 
 export default function Footer() {
   return (
-    <motion.footer
+    <Motion.footer
       initial={{ y: 24, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
@@ -15,6 +15,6 @@ export default function Footer() {
           CSS
         </span>
       </div>
-    </motion.footer>
+    </Motion.footer>
   );
 }
