@@ -1,10 +1,11 @@
 "use client";
-import { useState, useMemo } from "react";
+import { useState, useMemo, Suspense } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SearchBar from "@/components/SearchBar";
 import TemplateCard from "@/components/TemplateCard";
 import Template from "./Template";
+import Spinner from "@/components/Spinner";
 
 const templates = [
   {
@@ -56,7 +57,7 @@ export default function HomePage() {
     <>
       <Header />
       <Template>
-        <section className="w-full py-16 bg-white">
+        <section className="w-full py-16 bg-white min-h-screen">
           <div className="max-w-3xl mx-auto text-center mb-10 px-4">
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
               Instantly generate{" "}
@@ -68,19 +69,23 @@ export default function HomePage() {
             </p>
             <SearchBar value={search} onChange={setSearch} />
           </div>
-          <div
-            className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4"
-            id="templates"
-          >
-            {filtered.length === 0 && (
-              <div className="col-span-full text-neutral-400 text-center py-10">
-                No templates found.
-              </div>
-            )}
-            {filtered.map((t) => (
-              <TemplateCard key={t.id} {...t} />
-            ))}
-          </div>
+          <Suspense fallback={<Spinner />}>
+            <div
+              className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4"
+              id="templates"
+            >
+              {filtered.length === 0 ? (
+                <div className="col-span-full text-center py-10">
+                  <p className="text-neutral-400 mb-4">No templates found</p>
+                  <p className="text-sm text-neutral-500">
+                    Try a different search term or browse our templates
+                  </p>
+                </div>
+              ) : (
+                filtered.map((t) => <TemplateCard key={t.id} {...t} />)
+              )}
+            </div>
+          </Suspense>
         </section>
       </Template>
       <Footer />

@@ -23,7 +23,7 @@ export default function TemplateCard({
           scale: 1.025,
         }}
         transition={{ type: "spring", stiffness: 300, damping: 24 }}
-        className="bg-white rounded-2xl border border-neutral-100 shadow-md p-6 flex flex-col gap-3 min-h-[170px] transition-all duration-200"
+        className="bg-white rounded-2xl border border-neutral-100 shadow-md p-6 flex flex-col gap-3 min-h-[170px]"
       >
         <div className="flex items-center gap-3">
           <span className="bg-blue-50 text-blue-600 p-2 rounded-lg">
