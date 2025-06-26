@@ -1,9 +1,9 @@
 "use client";
-import Motion from "@/lib/motion";
+import { motion } from "@/lib/motion";
 
 export default function TemplatePreview({ content }: { content: string }) {
   return (
-    <Motion.div
+    <motion.div
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
@@ -17,6 +17,6 @@ export default function TemplatePreview({ content }: { content: string }) {
           Fill in the form to see your document preview here.
         </div>
       )}
-    </Motion.div>
+    </motion.div>
   );
 }
