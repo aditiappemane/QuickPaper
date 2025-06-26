@@ -1,5 +1,5 @@
 "use client";
-import Motion from "@/lib/motion";
+import { motion } from "@/lib/motion";
 import { FiFileText } from "react-icons/fi";
 import Link from "next/link";
 
@@ -16,7 +16,7 @@ export default function TemplateCard({
 }) {
   return (
     <Link href={`/${id}`} className="block">
-      <Motion.div
+      <motion.div
         whileHover={{
           y: -4,
           boxShadow: "0 8px 32px -8px rgba(30, 64, 175, 0.10)",
@@ -39,7 +39,7 @@ export default function TemplateCard({
         <div className="text-sm text-neutral-500 line-clamp-2">
           {description}
         </div>
-      </Motion.div>
+      </motion.div>
     </Link>
   );
 }
