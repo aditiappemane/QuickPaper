@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { motion } from "framer-motion";
+import Motion from "@/lib/motion";
 
 export default function Header() {
   return (
-    <motion.header
+    <Motion.header
       initial={{ y: -24, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
@@ -40,6 +40,6 @@ export default function Header() {
           </Link>
         </nav>
       </div>
-    </motion.header>
+    </Motion.header>
   );
 }
