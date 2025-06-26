@@ -7,8 +7,17 @@ declare module "html2pdf.js" {
     jsPDF?: { unit: string; format: string; orientation: string };
   }
 
-  export default function html2pdf(
-    element?: HTMLElement | string,
-    options?: Html2PdfOptions
-  ): any;
+  interface Html2PdfResult {
+    save: () => void;
+    outputPdf: (type: "datauristring") => Promise<string>;
+    from: (element: HTMLElement) => Html2PdfResult;
+    set: (options: Html2PdfOptions) => Html2PdfResult;
+  }
+
+  const html2pdf: {
+    (): Html2PdfResult;
+    (element: HTMLElement, options: Html2PdfOptions): Html2PdfResult;
+  };
+
+  export default html2pdf;
 }
