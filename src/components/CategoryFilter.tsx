@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 
 const categories = ["All", "Student", "Work", "Finance"];
 
