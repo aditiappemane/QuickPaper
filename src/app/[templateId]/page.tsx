@@ -13,7 +13,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import CopyTextButton from "@/components/CopyTextButton";
 
 function fillTemplate(template: string, values: Record<string, string>) {
-  return template.replace(/{{(\w+)}}/g, (_, key) => values[key]?.trim() || "");
+  return template.replace(/{{(\w+)}}/g, (_, key) => {
+    const value = values[key]?.trim();
+    return value
+      ? value
+      : `<span class="inline-block min-w-[100px] border-b border-dashed border-gray-300 align-baseline">&nbsp;</span>`;
+  });
 }
 
 export default function TemplatePage() {
@@ -37,6 +42,23 @@ export default function TemplatePage() {
   if (!templateId || !templateData) return notFound();
 
   const filled = fillTemplate(templateData.template, values);
+  const previewLength = 300;
+  const isLong = filled.replace(/<[^>]+>/g, "").length > previewLength;
+
+  function getPreview(html: string) {
+    const text = html.replace(/<[^>]+>/g, "");
+    if (text.length <= previewLength) return html;
+    let count = 0,
+      i = 0;
+    for (; i < html.length && count < previewLength; i++) {
+      if (html[i] === "<") {
+        while (i < html.length && html[i] !== ">") i++;
+      } else {
+        count++;
+      }
+    }
+    return html.slice(0, i) + "...";
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-white via-slate-50 to-blue-50">
@@ -78,6 +100,7 @@ export default function TemplatePage() {
               />
             </div>
 
+            {/* Action Buttons */}
             <div className="flex flex-wrap gap-3">
               <button
                 onClick={() => setValues(initialState)}
@@ -86,35 +109,38 @@ export default function TemplatePage() {
                 Reset Form
               </button>
 
-              <CopyTextButton textToCopy={filled} />
+              <CopyTextButton textToCopy={filled.replace(/<[^>]+>/g, "")} />
 
               <PDFExporter
-                content={filled}
+                content={filled.replace(/<[^>]+>/g, "")}
                 fileName={`${templateData.title}.pdf`}
               />
             </div>
           </div>
 
+          {/* Preview Section */}
           <div className="sticky top-24">
             <div className="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
               <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-gradient-to-r from-blue-50/80 via-white/80 to-slate-50/80">
                 <h3 className="font-semibold text-gray-800 text-lg flex items-center gap-2">
                   Live Preview
                 </h3>
-                <button
-                  onClick={() => setShowFullPreview(!showFullPreview)}
-                  className="flex items-center text-blue-600 font-medium hover:text-blue-800 transition-colors"
-                >
-                  {showFullPreview ? (
-                    <>
-                      Hide Full <FiChevronUp className="ml-1" />
-                    </>
-                  ) : (
-                    <>
-                      View Full <FiChevronDown className="ml-1" />
-                    </>
-                  )}
-                </button>
+                {isLong && (
+                  <button
+                    onClick={() => setShowFullPreview(!showFullPreview)}
+                    className="flex items-center text-blue-600 font-medium hover:text-blue-800 transition-colors"
+                  >
+                    {showFullPreview ? (
+                      <>
+                        Hide Full <FiChevronUp className="ml-1" />
+                      </>
+                    ) : (
+                      <>
+                        View Full <FiChevronDown className="ml-1" />
+                      </>
+                    )}
+                  </button>
+                )}
               </div>
 
               <AnimatePresence mode="wait">
@@ -128,17 +154,11 @@ export default function TemplatePage() {
                   style={{ minHeight: 340 }}
                 >
                   {filled ? (
-                    showFullPreview ? (
-                      filled
-                    ) : (
-                      <>
-                        {filled.slice(0, 300)}
-                        {filled.length > 300 && "..."}
-                        <div className="mt-4 text-xs text-blue-500">
-                          (Preview - click &#39;View Full&#39; to expand)
-                        </div>
-                      </>
-                    )
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: showFullPreview ? filled : getPreview(filled),
+                      }}
+                    />
                   ) : (
                     <div className="text-gray-400 italic h-full flex items-center justify-center">
                       Fill in the form to see your document preview
