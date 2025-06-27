@@ -23,7 +23,7 @@ export default function RequestTemplatePage() {
                 Need a specific template?
               </h1>
               <p className="text-lg text-gray-600 max-w-xl mx-auto">
-                We're expanding our library weekly. Request any document
+                We&#39;re expanding our library weekly. Request any document
                 template you need.
               </p>
             </div>
@@ -42,11 +42,11 @@ export default function RequestTemplatePage() {
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="mt-1 w-2 h-2 bg-blue-400 rounded-full"></div>
-                      <span>We'll review and create it</span>
+                      <span>We&#39;ll review and create it</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="mt-1 w-2 h-2 bg-blue-400 rounded-full"></div>
-                      <span>Get notified when it's added</span>
+                      <span>Get notified when it&#39;s added</span>
                     </li>
                   </ul>
                 </div>
