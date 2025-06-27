@@ -139,11 +139,12 @@ export default function HomePage() {
           </motion.div>
         </motion.section>
 
+        {/* Live Preview Demo Section */}
         <motion.section
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-8 py-10 bg-white rounded-2xl shadow-sm border border-gray-100"
+          className="w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-8 py-10 bg-white rounded-2xl shadow-sm border border-gray-100 mb-14"
         >
           <div className="grid md:grid-cols-2 gap-8 items-start">
             <div>
@@ -177,7 +178,6 @@ export default function HomePage() {
                 ))}
               </div>
             </div>
-
             <motion.div
               initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -205,6 +205,7 @@ export default function HomePage() {
           </div>
         </motion.section>
 
+        {/* New & Trending Templates Section */}
         <motion.section
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -215,7 +216,7 @@ export default function HomePage() {
             initial={{ opacity: 0, filter: "blur(18px)" }}
             animate={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ duration: 0.9, ease: "easeOut" }}
-            className="w-full max-w-4xl bg-gradient-to-br from-blue-50 via-white to-indigo-50 rounded-2xl shadow-xl p-4 md:p-6 flex flex-col lg:flex-row items-center gap-6"
+            className="w-full max-w-5xl bg-white rounded-2xl shadow-sm border border-gray-100 p-4 md:p-6 flex flex-col lg:flex-row items-center gap-6"
           >
             <div className="flex-1 flex flex-col justify-center items-start mb-6 lg:mb-0">
               <div className="flex items-center gap-2 mb-3">
@@ -281,33 +282,33 @@ export default function HomePage() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.6 }}
-          className="w-full max-w-6xl mb-24"
+          className="w-full max-w-5xl mb-24"
         >
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-br from-white to-blue-50 border border-gray-100 rounded-3xl shadow-lg p-8 flex flex-col items-center text-center hover:shadow-xl transition-all">
-              <FiLayers className="text-blue-500 text-5xl mb-6" />
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-6 flex flex-col items-center text-center hover:shadow-lg transition-all">
+              <FiLayers className="text-blue-500 text-3xl mb-4" />
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 Curated Templates
               </h3>
-              <p className="text-gray-600 text-lg">
+              <p className="text-gray-600 text-base">
                 Professionally designed templates for every need
               </p>
             </div>
-            <div className="bg-gradient-to-br from-white to-blue-50 border border-gray-100 rounded-3xl shadow-lg p-8 flex flex-col items-center text-center hover:shadow-xl transition-all">
-              <FiCheckCircle className="text-green-500 text-5xl mb-6" />
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+            <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-6 flex flex-col items-center text-center hover:shadow-lg transition-all">
+              <FiCheckCircle className="text-green-500 text-3xl mb-4" />
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 Instant Results
               </h3>
-              <p className="text-gray-600 text-lg">
+              <p className="text-gray-600 text-base">
                 Generate documents in seconds, not hours
               </p>
             </div>
-            <div className="bg-gradient-to-br from-white to-blue-50 border border-gray-100 rounded-3xl shadow-lg p-8 flex flex-col items-center text-center hover:shadow-xl transition-all">
-              <FiFileText className="text-purple-500 text-5xl mb-6" />
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+            <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-6 flex flex-col items-center text-center hover:shadow-lg transition-all">
+              <FiFileText className="text-purple-500 text-3xl mb-4" />
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 Easy Customization
               </h3>
-              <p className="text-gray-600 text-lg">
+              <p className="text-gray-600 text-base">
                 Personalize templates with simple forms
               </p>
             </div>
