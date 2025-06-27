@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "@/lib/motion";
+import { motion } from "framer-motion";
 import { FiFileText } from "react-icons/fi";
 import Link from "next/link";
 
