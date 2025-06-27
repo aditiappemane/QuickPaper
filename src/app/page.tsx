@@ -1,47 +1,72 @@
 "use client";
-import { useState, useMemo, Suspense } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SearchBar from "@/components/SearchBar";
 import TemplateCard from "@/components/TemplateCard";
 import Template from "./Template";
 import Spinner from "@/components/Spinner";
+import { motion } from "framer-motion";
 
-const templates = [
+type TemplateType = {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+};
+
+const templatesData: TemplateType[] = [
   {
     id: "leave-application",
     title: "Leave Application",
-    description: "Request time off with a formal leave letter template.",
+    description: "Request time off with formal leave letters",
     category: "Student",
   },
   {
     id: "resignation-letter",
     title: "Resignation Letter",
-    description: "Resign from your job professionally and politely.",
+    description: "Resign professionally and politely",
     category: "Work",
   },
   {
     id: "bonafide-certificate",
-    title: "Bonafide Certificate Request",
-    description: "Request a bonafide certificate from your institution.",
+    title: "Bonafide Certificate",
+    description: "Request certificates from institutions",
     category: "Student",
   },
   {
     id: "internship-application",
     title: "Internship Application",
-    description: "Apply for internships with a formal application letter.",
+    description: "Apply for internships with formal letters",
     category: "Work",
   },
   {
     id: "bank-account-opening",
-    title: "Bank Account Opening Letter",
-    description: "Request to open a new bank account with a formal letter.",
+    title: "Bank Account Letter",
+    description: "Request new bank account openings",
     category: "Finance",
+  },
+  {
+    id: "fee-concession",
+    title: "Fee Concession Request",
+    description: "Request fee discounts from institutions",
+    category: "Student",
   },
 ];
 
 export default function HomePage() {
   const [search, setSearch] = useState("");
+  const [templates, setTemplates] = useState<TemplateType[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    const timer = setTimeout(() => {
+      setTemplates(templatesData);
+      setLoading(false);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
 
   const filtered = useMemo(() => {
     if (!search.trim()) return templates;
@@ -51,44 +76,91 @@ export default function HomePage() {
         t.description.toLowerCase().includes(search.toLowerCase()) ||
         t.category.toLowerCase().includes(search.toLowerCase())
     );
-  }, [search]);
+  }, [search, templates]);
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <Header />
       <Template>
-        <section className="w-full py-16 bg-white min-h-screen">
-          <div className="max-w-3xl mx-auto text-center mb-10 px-4">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-              Instantly generate{" "}
-              <span className="text-blue-600">formal documents</span>
-            </h1>
-            <p className="text-lg text-neutral-600 mb-6">
-              QuickPaper helps you create professional letters and applications
-              from pre-defined templates in seconds.
-            </p>
-            <SearchBar value={search} onChange={setSearch} />
-          </div>
-          <Suspense fallback={<Spinner />}>
-            <div
-              className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4"
-              id="templates"
-            >
-              {filtered.length === 0 ? (
-                <div className="col-span-full text-center py-10">
-                  <p className="text-neutral-400 mb-4">No templates found</p>
-                  <p className="text-sm text-neutral-500">
-                    Try a different search term or browse our templates
-                  </p>
-                </div>
-              ) : (
-                filtered.map((t) => <TemplateCard key={t.id} {...t} />)
-              )}
+        <section className="w-full py-16 bg-white">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-4极速赛车开奖网
+xl md:text-5xl font-bold mb-6 text-neutral-900"
+              >
+                Instantly Generate{" "}
+                <span className="text-blue-600">Formal Documents</span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.1 }}
+                className="text-xl text-neutral-600 mb-8 max-w-2xl mx-auto"
+              >
+                QuickPaper helps you create professional letters and
+                applications from beautiful templates in seconds.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className="max-w-xl mx-auto"
+              >
+                <SearchBar value={search} onChange={setSearch} />
+              </motion.div>
             </div>
-          </Suspense>
+
+            {loading ? (
+              <div className="flex justify-center py-16">
+                <Spinner />
+              </div>
+            ) : (
+              <>
+                <div className="mb-12">
+                  <h2 className="text-2xl font-semibold text-neutral-900 mb-6 text-center">
+                    Popular Templates
+                  </h2>
+
+                  <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {filtered.slice(0, 3).map((t) => (
+                      <TemplateCard key={t.id} {...t} />
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h2 className="text-2xl font-semibold text-neutral-900 mb-6 text-center">
+                    All Templates
+                  </h2>
+
+                  {filtered.length === 0 ? (
+                    <div className="text-center py-12">
+                      <p className="text-neutral-400 mb-4">
+                        No templates found
+                      </p>
+                      <p className="text-neutral-500">
+                        Try a different search term or browse our templates
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                      {filtered.map((t) => (
+                        <TemplateCard key={t.id} {...t} />
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </>
+            )}
+          </div>
         </section>
       </Template>
       <Footer />
-    </>
+    </div>
   );
 }
