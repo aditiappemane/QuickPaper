@@ -1,12 +1,13 @@
 "use client";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SearchBar from "@/components/SearchBar";
 import TemplateCard from "@/components/TemplateCard";
-import Template from "../Template";
+import Template from "../app/Template";
 import { motion } from "framer-motion";
 import { FiFilter, FiGrid, FiList } from "react-icons/fi";
+import NoResultsFound from "@/components/NoResultsFound";
 
 const allTemplates = [
   {
@@ -175,7 +176,6 @@ export default function TemplatesPage() {
               </div>
             </div>
 
-            {/* Results */}
             {filtered.length === 0 ? (
               <NoResultsFound searchTerm={search} />
             ) : (
