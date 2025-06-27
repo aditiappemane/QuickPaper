@@ -41,37 +41,49 @@ export default function TemplatesPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Hero Section */}
             <motion.div
-              initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.6, type: "spring" }}
+              initial={{ opacity: 0, filter: "blur(14px)" }}
+              animate={{ opacity: 1, filter: "blur(0px)" }}
+              transition={{ duration: 0.7, type: "spring" }}
               className="text-center mb-12"
             >
-              <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
+              <motion.h1
+                initial={{ opacity: 0, filter: "blur(12px)" }}
+                animate={{ opacity: 1, filter: "blur(0px)" }}
+                transition={{ duration: 0.7, delay: 0.12, type: "spring" }}
+                className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight"
+              >
                 Find Your Perfect Template
-              </h1>
-              <p className="text-xl text-gray-600 mb-6 max-w-3xl mx-auto">
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, filter: "blur(10px)" }}
+                animate={{ opacity: 1, filter: "blur(0px)" }}
+                transition={{ duration: 0.7, delay: 0.18, type: "spring" }}
+                className="text-xl text-gray-600 mb-6 max-w-3xl mx-auto"
+              >
                 {templates.length}+ modern, ready-to-use documents—search,
                 filter, and create in seconds.
-              </p>
-              <div className="inline-flex items-center px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-medium shadow-sm">
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0, filter: "blur(8px)" }}
+                animate={{ opacity: 1, filter: "blur(0px)" }}
+                transition={{ duration: 0.7, delay: 0.22, type: "spring" }}
+                className="inline-flex items-center px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-medium shadow-sm"
+              >
                 ✨ New templates every week
-              </div>
+              </motion.div>
             </motion.div>
 
             {/* Search & Filters */}
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.5 }}
+              initial={{ opacity: 0, filter: "blur(10px)" }}
+              animate={{ opacity: 1, filter: "blur(0px)" }}
+              transition={{ delay: 0.15, duration: 0.6 }}
               className="mb-10"
             >
               <div className="flex flex-col md:flex-row gap-4 items-start md:items-center">
-                {/* SearchBar */}
                 <div className="flex-1 w-full">
                   <SearchBar value={search} onChange={setSearch} />
                 </div>
-
-                {/* Mobile Filters Button */}
                 <button
                   onClick={() => setShowFilters(!showFilters)}
                   className="md:hidden flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg text-gray-700 font-medium"
@@ -79,8 +91,6 @@ export default function TemplatesPage() {
                   <FiFilter size={18} />
                   Filters
                 </button>
-
-                {/* View Toggle */}
                 <div className="flex items-center gap-1 bg-gray-100 rounded-full p-1">
                   <button
                     onClick={() => setViewMode("grid")}
@@ -106,14 +116,16 @@ export default function TemplatesPage() {
                   </button>
                 </div>
               </div>
-
-              {/* Category Filters */}
               <AnimatePresence>
                 {(showFilters || !showFilters) && (
                   <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
+                    initial={{ height: 0, opacity: 0, filter: "blur(8px)" }}
+                    animate={{
+                      height: "auto",
+                      opacity: 1,
+                      filter: "blur(0px)",
+                    }}
+                    exit={{ height: 0, opacity: 0, filter: "blur(8px)" }}
                     transition={{ duration: 0.3 }}
                     className={`mt-4 overflow-hidden ${
                       showFilters ? "block" : "hidden md:block"
@@ -143,9 +155,9 @@ export default function TemplatesPage() {
 
             {/* Results Count */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
+              initial={{ opacity: 0, filter: "blur(6px)" }}
+              animate={{ opacity: 1, filter: "blur(0px)" }}
+              transition={{ delay: 0.18 }}
               className="mb-6 flex justify-between items-center"
             >
               <p className="text-gray-600">
@@ -159,19 +171,19 @@ export default function TemplatesPage() {
               {filtered.length === 0 ? (
                 <motion.div
                   key="no-results"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
+                  initial={{ opacity: 0, filter: "blur(8px)" }}
+                  animate={{ opacity: 1, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, filter: "blur(8px)" }}
                 >
                   <NoResultsFound searchTerm={search} />
                 </motion.div>
               ) : (
                 <motion.div
                   key={`${viewMode}-${selectedCategory}-${search}`}
-                  initial={{ opacity: 0, filter: "blur(8px)" }}
+                  initial={{ opacity: 0, filter: "blur(10px)" }}
                   animate={{ opacity: 1, filter: "blur(0px)" }}
-                  exit={{ opacity: 0, filter: "blur(8px)" }}
-                  transition={{ duration: 0.4 }}
+                  exit={{ opacity: 0, filter: "blur(10px)" }}
+                  transition={{ duration: 0.5 }}
                   className={`grid gap-6 ${
                     viewMode === "grid"
                       ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
@@ -181,8 +193,8 @@ export default function TemplatesPage() {
                   {filtered.map((template, index) => (
                     <motion.div
                       key={template.id}
-                      initial={{ opacity: 0, y: 24 }}
-                      animate={{ opacity: 1, y: 0 }}
+                      initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
+                      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                       transition={{ delay: index * 0.04 }}
                     >
                       <TemplateCard {...template} viewMode={viewMode} />
