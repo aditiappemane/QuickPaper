@@ -27,7 +27,7 @@ export default function Header() {
             Home
           </Link>
           <Link
-            href="#templates"
+            href="/templates"
             className="text-neutral-700 hover:text-blue-600 transition-colors font-medium"
           >
             Templates

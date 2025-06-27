@@ -82,7 +82,6 @@ export default function TemplatesPage() {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
-
   const filtered = useMemo(() => {
     let result = allTemplates;
 
