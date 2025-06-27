@@ -9,25 +9,38 @@ const resignationLetter: Template = {
   isNew: false,
   glimpse: "Professional resignation notice with proper notice period.",
   fields: [
-    { name: "employeeName", label: "Your Name", type: "text" },
+    { name: "yourName", label: "Your Name", type: "text" },
+    { name: "yourAddress", label: "Your Address", type: "text" },
+    { name: "cityStateZip", label: "City, State, Zip Code", type: "text" },
+    { name: "email", label: "Email Address", type: "text" },
+    { name: "phone", label: "Phone Number", type: "text" },
+    { name: "date", label: "Date", type: "date" },
     { name: "managerName", label: "Manager's Name", type: "text" },
-    { name: "position", label: "Your Position", type: "text" },
+    { name: "managerPosition", label: "Manager's Position", type: "text" },
     { name: "company", label: "Company Name", type: "text" },
+    { name: "companyAddress", label: "Company Address", type: "text" },
+    {
+      name: "companyCityStateZip",
+      label: "Company City, State, Zip Code",
+      type: "text",
+    },
+    { name: "position", label: "Your Position", type: "text" },
     { name: "lastWorkingDay", label: "Last Working Day", type: "date" },
     { name: "reason", label: "Reason for Resignation", type: "textarea" },
   ],
-  template: `[Your Name]
-[Your Address]
-[City, State, Zip Code]
-[Email Address]
-[Phone Number]
-[Date]
+  template: `
+[{{yourName}}]
+[{{yourAddress}}]
+[{{cityStateZip}}]
+[{{email}}]
+[{{phone}}]
+[{{date}}]
 
 {{managerName}}
-[Manager's Position]
+[{{managerPosition}}]
 {{company}}
-[Company Address]
-[City, State, Zip Code]
+[{{companyAddress}}]
+[{{companyCityStateZip}}]
 
 Dear {{managerName}},
 
@@ -42,7 +55,8 @@ Please let me know how I can assist during this transition period. I'm committed
 Thank you for your understanding.
 
 Sincerely,
-{{employeeName}}`,
+{{yourName}}
+`,
 };
 
 export default resignationLetter;
