@@ -2,8 +2,9 @@ import { Template } from "./types";
 
 const recommendationLetter: Template = {
   id: "recommendation-letter",
-  title: "Recommendation Letter",
-  description: "Request professional recommendations",
+  title: "Recommendation Letter Request",
+  description:
+    "Request professional recommendations from a supervisor, professor, or employer.",
   category: "Work",
   popularity: 65,
   isNew: true,
@@ -11,27 +12,43 @@ const recommendationLetter: Template = {
     "A formal letter template to request a recommendation from a supervisor, professor, or employer.",
   fields: [
     { name: "requesterName", label: "Your Name", type: "text" },
+    { name: "requesterAddress", label: "Your Address", type: "text" },
+    { name: "contactInfo", label: "Your Contact Information", type: "text" },
+    { name: "date", label: "Date", type: "date" },
     { name: "recipientName", label: "Recipient's Name", type: "text" },
+    {
+      name: "recipientTitle",
+      label: "Recipient's Title/Position",
+      type: "text",
+    },
+    { name: "recipientAddress", label: "Recipient's Address", type: "text" },
+    { name: "subject", label: "Subject (optional)", type: "text" },
     {
       name: "relationship",
       label: "Your Relationship (e.g., Professor, Manager)",
       type: "text",
     },
+    { name: "duration", label: "Duration of Association", type: "text" },
     { name: "purpose", label: "Purpose of Recommendation", type: "textarea" },
     {
       name: "achievements",
       label: "Key Achievements/Qualities",
       type: "textarea",
     },
-    { name: "duration", label: "Duration of Association", type: "text" },
-    { name: "contactInfo", label: "Your Contact Information", type: "text" },
   ],
-  template: `To,
+  template: `
+{{requesterName}}
+{{requesterAddress}}
+{{contactInfo}}
+
+Date: {{date}}
+
+To,
 {{recipientName}}
+{{recipientTitle}}
+{{recipientAddress}}
 
-Date: {{currentDate}}
-
-Subject: Request for Recommendation Letter
+Subject: {{subject || "Request for Recommendation Letter"}}
 
 Dear {{recipientName}},
 
@@ -46,7 +63,8 @@ Thank you very much for considering my request.
 
 Sincerely,
 {{requesterName}}
-{{contactInfo}}`,
+{{contactInfo}}
+`,
 };
 
 export default recommendationLetter;
