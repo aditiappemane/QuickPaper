@@ -1,43 +1,31 @@
-"use client";
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { FiSearch } from "react-icons/fi";
+import { FiSearch, FiX } from "react-icons/fi";
 
-export default function SearchBar({
-  value,
-  onChange,
-  placeholder = "Search templates...",
-}: {
+interface SearchBarProps {
   value: string;
-  onChange: (v: string) => void;
-  placeholder?: string;
-}) {
-  const [focused, setFocused] = useState(false);
+  onChange: (value: string) => void;
+}
 
+export default function SearchBar({ value, onChange }: SearchBarProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="w-full max-w-xl mx-auto"
-    >
-      <div
-        className={`flex items-center gap-2 bg-white border ${
-          focused ? "border-blue-500 shadow-md" : "border-neutral-200"
-        } rounded-2xl px-4 py-2 transition-all duration-200`}
-      >
-        <FiSearch className="text-neutral-400 text-lg" />
-        <input
-          type="text"
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          onFocus={() => setFocused(true)}
-          onBlur={() => setFocused(false)}
-          placeholder={placeholder}
-          className="flex-1 bg-transparent outline-none text-base text-neutral-800 placeholder-neutral-400 py-1"
-          aria-label="Search templates"
-        />
+    <div className="relative">
+      <div className="absolute inset-y-0 left-0 flex items-center pl-4">
+        <FiSearch className="text-gray-400" size={20} />
       </div>
-    </motion.div>
+      <input
+        type="text"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder="Search templates by name, description, or category..."
+        className="w-full pl-12 pr-12 py-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-500 text-lg shadow-sm"
+      />
+      {value && (
+        <button
+          onClick={() => onChange("")}
+          className="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-400 hover:text-gray-600"
+        >
+          <FiX size={20} />
+        </button>
+      )}
+    </div>
   );
 }
