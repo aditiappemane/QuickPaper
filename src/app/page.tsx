@@ -7,7 +7,6 @@ import {
   FiFileText,
   FiStar,
   FiEdit,
-  FiEye,
 } from "react-icons/fi";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -95,6 +94,8 @@ export default function HomePage() {
     sampleTemplate.template
   );
 
+  const isEmpty = !filledTemplate.trim();
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-white via-slate-50 to-blue-50">
       <Header />
@@ -142,20 +143,20 @@ export default function HomePage() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="w-full max-w-4xl bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl shadow-lg p-4 mb-12"
+          className="w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-8 py-10 bg-white rounded-2xl shadow-sm border border-gray-100"
         >
-          <div className="flex flex-col md:flex-row gap-6">
-            <div className="flex-1">
+          <div className="grid md:grid-cols-2 gap-8 items-start">
+            <div>
               <div className="flex items-center gap-2 mb-3">
                 <FiEdit className="text-blue-600 text-xl" />
-                <h2 className="text-lg font-bold text-gray-900">
+                <h2 className="text-base font-semibold text-gray-900">
                   Live Preview Demo
                 </h2>
               </div>
               <p className="text-gray-600 mb-4 text-sm">
                 Fill in the details and watch your document update in real-time.
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {Object.entries(livePreviewValues).map(([key, value]) => (
                   <div key={key}>
                     <label className="block text-xs font-medium text-gray-700 mb-1 capitalize">
@@ -170,29 +171,40 @@ export default function HomePage() {
                           [key]: e.target.value,
                         }))
                       }
-                      className="w-full border border-gray-200 rounded-lg px-3 py-2 focus:border-blue-500 focus:outline-none transition text-sm bg-white"
+                      className="w-full border border-gray-200 rounded-md px-3 py-2 text-sm bg-white focus:border-blue-500 focus:outline-none"
                     />
                   </div>
                 ))}
               </div>
             </div>
-            <div className="flex-1">
-              <div className="flex items-center gap-2 mb-3">
-                <FiEye className="text-purple-600 text-xl" />
-                <h2 className="text-lg font-bold text-gray-900">
-                  Generated Document
-                </h2>
-              </div>
-              <div className="bg-white border border-gray-200 rounded-lg shadow p-4 h-full">
-                <pre className="whitespace-pre-wrap font-sans text-gray-800 text-sm">
-                  {filledTemplate}
+
+            <motion.div
+              initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="relative w-full"
+              style={{
+                borderRadius: "1rem",
+                background: "#f9fafb",
+                boxShadow: "0 4px 14px rgba(0, 0, 0, 0.05)",
+              }}
+            >
+              <div className="p-4 min-h-[120px] text-xs sm:text-sm text-gray-800 relative overflow-x-auto">
+                <pre className="whitespace-pre-wrap font-sans text-gray-700 m-0 bg-transparent">
+                  {isEmpty ? (
+                    <span className="text-gray-400">
+                      Your document will appear here
+                      <span className="blinking-cursor">|</span>
+                    </span>
+                  ) : (
+                    filledTemplate
+                  )}
                 </pre>
               </div>
-            </div>
+            </motion.div>
           </div>
         </motion.section>
 
-        {/* New & Trending Templates Section */}
         <motion.section
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
