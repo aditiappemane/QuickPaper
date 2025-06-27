@@ -10,12 +10,17 @@ export default function RequestTemplatePage() {
       <Header />
       <main className="flex-1 w-full px-4 py-12 max-w-5xl mx-auto">
         <motion.section
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 24, filter: "blur(12px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
           <div className="flex flex-col gap-10">
-            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 mb-4 flex flex-col items-center text-center border border-gray-100">
+            <motion.div
+              initial={{ opacity: 0, y: 24, filter: "blur(12px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 mb-4 flex flex-col items-center text-center border border-gray-100"
+            >
               <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 text-blue-600 rounded-full mb-6">
                 <FiZap size={28} />
               </div>
@@ -26,10 +31,15 @@ export default function RequestTemplatePage() {
                 We&#39;re expanding our library weekly. Request any document
                 template you need.
               </p>
-            </div>
+            </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              <div className="space-y-6">
+              <motion.div
+                initial={{ opacity: 0, y: 24, filter: "blur(12px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="space-y-6"
+              >
                 <div className="bg-blue-50 rounded-xl p-6">
                   <h3 className="font-bold text-gray-900 text-lg mb-2 flex items-center gap-2">
                     <FiZap className="text-blue-600" />
@@ -70,9 +80,14 @@ export default function RequestTemplatePage() {
                     </span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="flex flex-col justify-between">
+              <motion.div
+                initial={{ opacity: 0, y: 24, filter: "blur(12px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="flex flex-col justify-between"
+              >
                 <div className="space-y-4">
                   <h3 className="font-bold text-gray-900 text-lg">
                     Get it added
@@ -98,10 +113,15 @@ export default function RequestTemplatePage() {
                     We&#39;ll respond within 48 hours
                   </p>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
-            <div className="bg-gray-50 border-t border-gray-100 rounded-2xl p-6 text-center mt-10">
+            <motion.div
+              initial={{ opacity: 0, y: 24, filter: "blur(12px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="bg-gray-50 border-t border-gray-100 rounded-2xl p-6 text-center mt-10"
+            >
               <p className="text-gray-500 text-sm">
                 Your request helps us improve QuickPaper for professionals and
                 students worldwide.
@@ -112,7 +132,7 @@ export default function RequestTemplatePage() {
               >
                 Browse existing templates
               </Link>
-            </div>
+            </motion.div>
           </div>
         </motion.section>
       </main>
