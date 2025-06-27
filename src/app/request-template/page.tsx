@@ -95,7 +95,7 @@ export default function RequestTemplatePage() {
                     Mail Your Request
                   </a>
                   <p className="text-center text-gray-500 text-sm mt-4">
-                    We'll respond within 48 hours
+                    We&#39;ll respond within 48 hours
                   </p>
                 </div>
               </div>
