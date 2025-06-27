@@ -14,11 +14,13 @@ const warningLetter: Template = {
     { name: "recipientName", label: "Recipient's Name", type: "text" },
     { name: "recipientId", label: "Employee/Student ID", type: "text" },
     { name: "designationOrClass", label: "Designation/Class", type: "text" },
+    { name: "recipientAddress", label: "Recipient Address", type: "text" },
     {
       name: "organization",
       label: "Organization/Institution Name",
       type: "text",
     },
+    { name: "orgAddress", label: "Organization Address", type: "text" },
     { name: "date", label: "Date", type: "date" },
     { name: "offense", label: "Nature of Offense/Violation", type: "textarea" },
     { name: "incidentDate", label: "Date of Incident", type: "date" },
@@ -31,7 +33,8 @@ const warningLetter: Template = {
     { name: "issuerDesignation", label: "Issuer's Designation", type: "text" },
   ],
   template: `
-[Organization/Institution Letterhead]
+{{organization}}
+{{orgAddress}}
 
 Date: {{date}}
 
@@ -39,7 +42,7 @@ To,
 {{recipientName}}
 {{designationOrClass}}
 ID: {{recipientId}}
-{{organization}}
+{{recipientAddress}}
 
 Subject: Warning Letter
 
