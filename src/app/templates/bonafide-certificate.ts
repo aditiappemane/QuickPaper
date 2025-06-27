@@ -7,9 +7,10 @@ const bonafideCertificate: Template = {
   category: "Student",
   popularity: 85,
   isNew: true,
-  glimpse: "Certificate request for academic or official purposes",
+  glimpse: "Certificate request for academic or official purposes.",
   fields: [
     { name: "studentName", label: "Student Name", type: "text" },
+    { name: "studentId", label: "Student ID", type: "text" },
     { name: "course", label: "Course/Program", type: "text" },
     { name: "purpose", label: "Purpose", type: "textarea" },
   ],
@@ -23,7 +24,7 @@ Subject: Request for Bonafide Certificate
 
 Respected Sir/Madam,
 
-I, {{studentName}}, am a student of {{course}} at your esteemed institution. I am writing to request a bonafide certificate for the following purpose:
+I, {{studentName}} (Student ID: {{studentId}}), am a student of {{course}} at your esteemed institution. I am writing to request a bonafide certificate for the following purpose:
 
 {{purpose}}
 
