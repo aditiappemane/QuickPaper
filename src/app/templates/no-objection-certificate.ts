@@ -13,20 +13,27 @@ const noObjectionCertificate: Template = {
   fields: [
     { name: "applicantName", label: "Applicant's Name", type: "text" },
     { name: "applicantId", label: "Applicant ID/Employee ID", type: "text" },
+    { name: "organization", label: "Organization Name", type: "text" },
+    { name: "orgAddress", label: "Organization Address", type: "text" },
+    { name: "recipient", label: "Recipient (optional)", type: "text" },
     { name: "purpose", label: "Purpose of NOC", type: "textarea" },
     { name: "issuerName", label: "Issuer's Name", type: "text" },
     { name: "issuerDesignation", label: "Issuer's Designation", type: "text" },
-    { name: "organization", label: "Organization Name", type: "text" },
     { name: "date", label: "Date", type: "date" },
   ],
   template: `
-To Whom It May Concern,
+{{organization}}
+{{orgAddress}}
 
 Date: {{date}}
 
+{{recipient ? ("To, " + recipient + "\\n") : ""}
+
 Subject: No Objection Certificate
 
-This is to certify that Mr./Ms. {{applicantName}} (ID: {{applicantId}}) has been associated with {{organization}} and we have no objection to {{purpose}}.
+To Whom It May Concern,
+
+This is to certify that Mr./Ms. {{applicantName}} (ID: {{applicantId}}) has been associated with {{organization}}, and we have no objection to {{purpose}}.
 
 This certificate is being issued at the request of the applicant for whatever purpose it may serve.
 
