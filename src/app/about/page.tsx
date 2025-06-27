@@ -1,7 +1,8 @@
+"use client";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Template from "../Template";
-import { motion } from "@/lib/motion";
+import { motion } from "framer-motion";
 
 export default function AboutPage() {
   return (

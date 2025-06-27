@@ -1,4 +1,5 @@
-import { motion } from "@/lib/motion";
+"use client";
+import { motion } from "framer-motion";
 
 export default function Footer() {
   return (

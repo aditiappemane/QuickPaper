@@ -1,6 +1,7 @@
+"use client";
 import Link from "next/link";
-import { motion } from "@/lib/motion";
-console.log(motion);
+import { motion } from "framer-motion";
+
 export default function Header() {
   return (
     <motion.header
