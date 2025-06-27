@@ -2,17 +2,20 @@ import { Template } from "./types";
 
 const bankAccountOpening: Template = {
   id: "bank-account-opening",
-  title: "Bank Account Letter",
-  description: "Open new bank accounts",
+  title: "Bank Account Opening Letter",
+  description: "Request to open a new bank account at your preferred branch.",
   category: "Finance",
   popularity: 75,
   isNew: true,
-  glimpse: "Formal request letter for opening a new bank account at a branch.",
+  glimpse:
+    "A formal request letter for opening a new bank account at a branch.",
   fields: [
     { name: "applicantName", label: "Your Full Name", type: "text" },
     { name: "address", label: "Your Address", type: "text" },
     { name: "contactNumber", label: "Contact Number", type: "text" },
     { name: "email", label: "Email Address", type: "text" },
+    { name: "date", label: "Date", type: "date" },
+    { name: "bankName", label: "Bank Name", type: "text" },
     {
       name: "accountType",
       label: "Account Type",
@@ -20,7 +23,11 @@ const bankAccountOpening: Template = {
       options: ["Savings", "Current", "Salary", "Student"],
     },
     { name: "branchName", label: "Branch Name", type: "text" },
-    { name: "initialDeposit", label: "Initial Deposit Amount", type: "number" },
+    {
+      name: "initialDeposit",
+      label: "Initial Deposit Amount (₹)",
+      type: "number",
+    },
     {
       name: "idProof",
       label: "ID Proof Type",
@@ -33,28 +40,31 @@ const bankAccountOpening: Template = {
         "PAN Card",
       ],
     },
+    { name: "idNumber", label: "ID Proof Number", type: "text" },
   ],
-  template: `To,
+  template: `
+To,
 The Branch Manager
 {{branchName}} Branch
-[Bank Name]
+{{bankName}}
 
-Date: {{currentDate}}
+Date: {{date}}
 
 Subject: Request for Opening a New {{accountType}} Account
 
 Respected Sir/Madam,
 
-I, {{applicantName}}, residing at {{address}}, would like to request the opening of a new {{accountType}} account at your {{branchName}} branch. I am submitting all the required documents, including my {{idProof}}, as proof of identity and address.
+I, {{applicantName}}, residing at {{address}}, wish to open a new {{accountType}} account at your {{branchName}} branch of {{bankName}}. Please find my details below:
 
-Please find my details below:
 - Full Name: {{applicantName}}
 - Address: {{address}}
 - Contact Number: {{contactNumber}}
 - Email: {{email}}
 - Account Type: {{accountType}}
 - Initial Deposit: ₹{{initialDeposit}}
-- ID Proof: {{idProof}}
+- ID Proof: {{idProof}} (No: {{idNumber}})
+
+I am enclosing self-attested copies of my {{idProof}} and other required documents for your verification.
 
 I kindly request you to process my application at the earliest. Please let me know if any further information or documentation is required.
 
@@ -63,7 +73,8 @@ Thank you for your assistance.
 Yours faithfully,
 {{applicantName}}
 Contact: {{contactNumber}}
-Email: {{email}}`,
+Email: {{email}}
+`,
 };
 
 export default bankAccountOpening;
