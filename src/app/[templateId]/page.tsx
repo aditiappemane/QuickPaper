@@ -12,12 +12,20 @@ import { FiChevronDown, FiChevronUp, FiHome } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
 import CopyTextButton from "@/components/CopyTextButton";
 
-function fillTemplate(template: string, values: Record<string, string>) {
+// Fill template and use field label as placeholder if empty
+function fillTemplate(
+  template: string,
+  values: Record<string, string>,
+  fields: { name: string; label: string }[]
+) {
   return template.replace(/{{(\w+)}}/g, (_, key) => {
     const value = values[key]?.trim();
-    return value
-      ? value
-      : `<span class="inline-block min-w-[100px] border-b border-dashed border-gray-300 align-baseline">&nbsp;</span>`;
+    const field = fields.find((f) => f.name === key);
+    if (value) return value;
+    // Use label as placeholder if field found, otherwise just underline
+    return field
+      ? `<span class="placeholder-in-preview">${field.label}</span>`
+      : `<span class="placeholder-in-preview">&nbsp;</span>`;
   });
 }
 
@@ -41,13 +49,19 @@ export default function TemplatePage() {
 
   if (!templateId || !templateData) return notFound();
 
-  const filled = fillTemplate(templateData.template, values);
+  const filled = fillTemplate(
+    templateData.template,
+    values,
+    templateData.fields
+  );
   const previewLength = 300;
   const isLong = filled.replace(/<[^>]+>/g, "").length > previewLength;
 
+  // For preview, cut off at previewLength (excluding tags)
   function getPreview(html: string) {
     const text = html.replace(/<[^>]+>/g, "");
     if (text.length <= previewLength) return html;
+    // Find where to cut in the HTML string
     let count = 0,
       i = 0;
     for (; i < html.length && count < previewLength; i++) {
