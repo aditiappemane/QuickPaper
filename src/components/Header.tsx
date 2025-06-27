@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { motion } from "@/lib/motion";
-
+console.log(motion);
 export default function Header() {
   return (
     <motion.header
