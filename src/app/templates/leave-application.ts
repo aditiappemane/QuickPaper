@@ -22,8 +22,8 @@ const leaveApplication: Template = {
     { name: "endDate", label: "End Date", type: "date" },
     { name: "reason", label: "Reason", type: "textarea" },
   ],
-  template: `[University Letterhead]
-
+  template: `[University Letterhead]  
+  
 To,
 The Head of Department
 [Department Name]
