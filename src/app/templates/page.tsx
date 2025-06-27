@@ -8,73 +8,7 @@ import Template from "@/app/Template";
 import { motion } from "framer-motion";
 import { FiFilter, FiGrid, FiList } from "react-icons/fi";
 import NoResultsFound from "@/components/NoResultsFound";
-
-const allTemplates = [
-  {
-    id: "leave-application",
-    title: "Leave Application",
-    description: "Request time off professionally",
-    category: "Student",
-    popularity: 95,
-    isNew: false,
-  },
-  {
-    id: "resignation-letter",
-    title: "Resignation Letter",
-    description: "Resign gracefully and professionally",
-    category: "Work",
-    popularity: 90,
-    isNew: false,
-  },
-  {
-    id: "bonafide-certificate",
-    title: "Bonafide Certificate",
-    description: "Request certificates from institutions",
-    category: "Student",
-    popularity: 85,
-    isNew: true,
-  },
-  {
-    id: "internship-application",
-    title: "Internship Application",
-    description: "Apply for internships formally",
-    category: "Work",
-    popularity: 80,
-    isNew: false,
-  },
-  {
-    id: "bank-account-opening",
-    title: "Bank Account Letter",
-    description: "Open new bank accounts",
-    category: "Finance",
-    popularity: 75,
-    isNew: true,
-  },
-  {
-    id: "fee-concession",
-    title: "Fee Concession Request",
-    description: "Request fee reductions",
-    category: "Student",
-    popularity: 70,
-    isNew: false,
-  },
-  {
-    id: "recommendation-letter",
-    title: "Recommendation Letter",
-    description: "Request professional recommendations",
-    category: "Work",
-    popularity: 65,
-    isNew: true,
-  },
-  {
-    id: "project-proposal",
-    title: "Project Proposal",
-    description: "Submit project proposals",
-    category: "Work",
-    popularity: 60,
-    isNew: false,
-  },
-];
+import { templates } from "@/templates";
 
 const categories = ["All", "Student", "Work", "Finance"];
 
@@ -82,8 +16,9 @@ export default function TemplatesPage() {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+
   const filtered = useMemo(() => {
-    let result = allTemplates;
+    let result = templates;
 
     if (selectedCategory !== "All") {
       result = result.filter((t) => t.category === selectedCategory);
@@ -118,7 +53,7 @@ export default function TemplatesPage() {
                   Document Templates
                 </h1>
                 <p className="text-lg text-gray-600 mb-2">
-                  Choose from {allTemplates.length} professional templates
+                  Choose from {templates.length} professional templates
                 </p>
                 <div className="inline-flex items-center px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">
                   ✨ Updated weekly with new templates
