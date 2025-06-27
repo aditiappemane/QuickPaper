@@ -11,23 +11,28 @@ const offerLetter: Template = {
     "A formal letter template for extending a job offer to a selected candidate.",
   fields: [
     { name: "candidateName", label: "Candidate's Name", type: "text" },
+    { name: "candidateAddress", label: "Candidate's Address", type: "text" },
     { name: "position", label: "Position Offered", type: "text" },
     { name: "company", label: "Company Name", type: "text" },
+    { name: "companyAddress", label: "Company Address", type: "text" },
     { name: "joiningDate", label: "Proposed Joining Date", type: "date" },
     { name: "salary", label: "Salary/Compensation", type: "text" },
+    { name: "offerReference", label: "Offer Reference Number", type: "text" },
     { name: "hrContact", label: "HR Contact Name", type: "text" },
     { name: "hrEmail", label: "HR Contact Email", type: "text" },
     { name: "date", label: "Date", type: "date" },
   ],
   template: `
-[Company Letterhead]
+{{company}}
+{{companyAddress}}
 
 Date: {{date}}
 
 To,
 {{candidateName}}
+{{candidateAddress}}
 
-Subject: Offer of Employment
+Subject: Offer of Employment (Ref: {{offerReference}})
 
 Dear {{candidateName}},
 
