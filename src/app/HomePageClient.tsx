@@ -5,7 +5,6 @@ import Footer from "@/components/Footer";
 import SearchBar from "@/components/SearchBar";
 import TemplateCard from "@/components/TemplateCard";
 import Template from "./Template";
-import Spinner from "@/components/Spinner";
 import { motion } from "framer-motion";
 
 const templates = [
