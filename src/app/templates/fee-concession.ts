@@ -3,7 +3,7 @@ import { Template } from "./types";
 const feeConcession: Template = {
   id: "fee-concession",
   title: "Fee Concession Request",
-  description: "Request fee reductions",
+  description: "Request a reduction or concession in academic fees.",
   category: "Student",
   popularity: 70,
   isNew: false,
@@ -14,6 +14,9 @@ const feeConcession: Template = {
     { name: "studentId", label: "Student ID", type: "text" },
     { name: "course", label: "Course/Program", type: "text" },
     { name: "academicYear", label: "Academic Year", type: "text" },
+    { name: "institutionName", label: "Institution Name", type: "text" },
+    { name: "institutionAddress", label: "Institution Address", type: "text" },
+    { name: "date", label: "Date", type: "date" },
     { name: "reason", label: "Reason for Concession", type: "textarea" },
     {
       name: "parentOccupation",
@@ -22,22 +25,23 @@ const feeConcession: Template = {
     },
     { name: "familyIncome", label: "Annual Family Income (₹)", type: "number" },
   ],
-  template: `To,
+  template: `
+To,
 The Principal
-[Institution Name]
-[Institution Address]
+{{institutionName}}
+{{institutionAddress}}
 
-Date: {{currentDate}}
+Date: {{date}}
 
 Subject: Application for Fee Concession
 
 Respected Sir/Madam,
 
-I, {{studentName}} (Student ID: {{studentId}}), am a student of {{course}} for the academic year {{academicYear}}. I am writing to request a concession in my academic fees due to the following reason:
+I, {{studentName}} (Student ID: {{studentId}}), am a student of {{course}} for the academic year {{academicYear}} at your esteemed institution. I am writing to request a concession in my academic fees due to the following reason:
 
 {{reason}}
 
-My parent/guardian is employed as a {{parentOccupation}}, and our annual family income is ₹{{familyIncome}}. I am unable to pay the full fees due to financial constraints.
+My parent/guardian is employed as a {{parentOccupation}}, and our annual family income is ₹{{familyIncome}}. Due to financial constraints, I am unable to pay the full fees.
 
 I kindly request you to consider my application and grant me a fee concession. I have attached all necessary supporting documents for your reference.
 
@@ -45,7 +49,8 @@ Thank you for your understanding and support.
 
 Yours faithfully,
 {{studentName}}
-Student ID: {{studentId}}`,
+Student ID: {{studentId}}
+`,
 };
 
 export default feeConcession;
