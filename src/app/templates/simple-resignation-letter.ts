@@ -40,9 +40,12 @@ Phone: {{employeePhone}}
 
 Date: {{date}}
 
+To,
 {{managerName}}
 {{company}}
 {{companyAddress}}
+
+Subject: Resignation Letter
 
 Dear {{managerName}},
 
