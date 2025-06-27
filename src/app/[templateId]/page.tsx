@@ -3,7 +3,7 @@ import { useState, useMemo } from "react";
 import { notFound, useParams } from "next/navigation";
 import { templates } from "@/app/templates";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+// import Footer from "@/components/Footer";
 import FormRenderer from "@/components/FormRenderer";
 import PDFExporter from "@/components/PDFExporter";
 import Template from "../Template";
@@ -193,7 +193,7 @@ export default function TemplatePage() {
           </div>
         </motion.div>
       </Template>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
