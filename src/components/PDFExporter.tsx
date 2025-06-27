@@ -40,7 +40,7 @@ export default function PDFExporter({
     tempContainer.appendChild(contentClone);
     document.body.appendChild(tempContainer);
 
-    html2pdf()
+    const pdfGenerator = html2pdf()
       .set({
         margin: 0,
         filename: fileName,
@@ -55,11 +55,10 @@ export default function PDFExporter({
           orientation: "portrait",
         },
       })
-      .from(contentClone)
-      .save()
-      .then(() => {
-        document.body.removeChild(tempContainer);
-      });
+      .from(contentClone);
+
+    pdfGenerator.save();
+    document.body.removeChild(tempContainer);
   }
 
   return (
