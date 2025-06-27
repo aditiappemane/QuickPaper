@@ -233,18 +233,19 @@ export default function HomePage() {
             initial={{ opacity: 0, filter: "blur(18px)" }}
             animate={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ duration: 0.9, ease: "easeOut" }}
-            className="w-full max-w-5xl bg-white rounded-2xl shadow-sm border border-gray-100 p-4 md:p-6 flex flex-col lg:flex-row items-center gap-6"
+            className="w-full max-w-5xl bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-5 md:p-6 flex flex-col lg:flex-row items-center gap-6"
           >
-            <div className="flex-1 flex flex-col justify-center items-start mb-6 lg:mb-0">
+            {/* Left Section */}
+            <div className="w-full lg:w-auto flex flex-col justify-center items-start mb-6 lg:mb-0">
               <div className="flex items-center gap-2 mb-3">
                 <FiStar className="text-yellow-500 text-2xl" />
-                <h2 className="text-2xl font-bold text-blue-700">
+                <h2 className="text-xl sm:text-2xl font-bold text-blue-700">
                   New & Trending Templates
                 </h2>
               </div>
               <p className="text-gray-600 text-base mb-2">
                 Discover our latest and most popular document templates.
-                <br />
+                <br className="hidden sm:block" />
                 Updated weekly for professionals, students, and businesses.
               </p>
               <ul className="text-gray-500 text-sm list-disc pl-5 space-y-1">
@@ -253,8 +254,9 @@ export default function HomePage() {
                 <li>Download as PDF or copy instantly</li>
               </ul>
             </div>
-            <div className="flex-[2] w-full">
-              <div className="grid grid-cols-2 gap-4">
+            {/* Right Section */}
+            <div className="w-full">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
                 {featuredNewTemplates.map((t, i) => (
                   <motion.div
                     key={t.id}
@@ -265,20 +267,20 @@ export default function HomePage() {
                       delay: 0.15 + i * 0.09,
                       ease: "easeOut",
                     }}
-                    className="aspect-square w-44 md:w-56 flex"
+                    className="w-full"
                   >
                     <Link
                       href={`/templates/${t.id}`}
-                      className="group flex flex-col items-center justify-center bg-white border border-gray-100 rounded-xl shadow hover:shadow-xl transition-all hover:-translate-y-1 px-3 py-4 w-full h-full"
+                      className="group flex flex-col items-center justify-center bg-white border border-gray-100 rounded-xl shadow hover:shadow-xl transition-all hover:-translate-y-1 px-2 py-3 sm:px-3 sm:py-4 w-full min-h-[120px] sm:min-h-[150px]"
                       style={{ minHeight: 0, minWidth: 0 }}
                     >
                       <div className="flex items-center gap-2 mb-1">
-                        <FiFileText className="text-blue-500 text-lg" />
+                        <FiFileText className="text-blue-500 text-base sm:text-lg" />
                         <span className="bg-green-50 text-green-700 text-xs font-semibold px-2 py-1 rounded-full">
                           NEW
                         </span>
                       </div>
-                      <div className="font-semibold text-gray-900 text-center text-sm leading-tight mb-1 group-hover:text-blue-600 transition">
+                      <div className="font-semibold text-gray-900 text-center text-xs sm:text-sm leading-tight mb-1 group-hover:text-blue-600 transition">
                         {t.title}
                       </div>
                       <div className="text-gray-500 text-xs text-center mb-2">
