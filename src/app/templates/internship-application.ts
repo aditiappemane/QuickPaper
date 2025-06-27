@@ -3,7 +3,7 @@ import { Template } from "./types";
 const internshipApplication: Template = {
   id: "internship-application",
   title: "Internship Application",
-  description: "Apply for internships formally",
+  description: "Apply for internships formally.",
   category: "Work",
   popularity: 80,
   isNew: false,
@@ -12,23 +12,33 @@ const internshipApplication: Template = {
     { name: "applicantName", label: "Your Name", type: "text" },
     { name: "email", label: "Email Address", type: "text" },
     { name: "phone", label: "Phone Number", type: "text" },
+    { name: "address", label: "Your Address", type: "text" },
+    { name: "date", label: "Date", type: "date" },
     { name: "position", label: "Internship Position", type: "text" },
     { name: "company", label: "Company Name", type: "text" },
+    { name: "companyAddress", label: "Company Address", type: "text" },
     { name: "duration", label: "Duration", type: "text" },
     { name: "skills", label: "Relevant Skills / Experience", type: "textarea" },
     { name: "objective", label: "Objective / Motivation", type: "textarea" },
   ],
-  template: `To,
+  template: `
+{{applicantName}}
+{{address}}
+Email: {{email}}
+Phone: {{phone}}
+
+Date: {{date}}
+
+To,
 The HR Manager
 {{company}}
-
-Date: {{currentDate}}
+{{companyAddress}}
 
 Subject: Application for Internship Position ({{position}})
 
 Respected Sir/Madam,
 
-I, {{applicantName}}, am writing to express my keen interest in the {{position}} internship at {{company}} for a duration of {{duration}}.
+I am writing to express my keen interest in the {{position}} internship at {{company}} for a duration of {{duration}}.
 
 Objective:
 {{objective}}
@@ -43,7 +53,8 @@ Thank you for considering my application. I look forward to your positive respon
 Sincerely,
 {{applicantName}}
 Email: {{email}}
-Phone: {{phone}}`,
+Phone: {{phone}}
+`,
 };
 
 export default internshipApplication;
