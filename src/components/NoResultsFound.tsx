@@ -13,12 +13,11 @@ export default function NoResultsFound({ searchTerm }: { searchTerm: string }) {
       </div>
 
       <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-        No templates found for "{searchTerm}"
+        No templates found for &quot;{searchTerm}&quot;{" "}
       </h3>
 
       <p className="text-gray-600 mb-8">
-        Don't worry! We're constantly adding new templates. Try adjusting your
-        search or request a custom template.
+        Don&apos;t worry! We&apos;re constantly adding new templates.
       </p>
 
       <div className="space-y-4">
