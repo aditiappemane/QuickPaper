@@ -13,7 +13,11 @@ const businessLetter: Template = {
   fields: [
     { name: "senderName", label: "Your Name", type: "text" },
     { name: "senderAddress", label: "Your Address", type: "text" },
-    { name: "senderCity", label: "Your City, State, Zip", type: "text" },
+    {
+      name: "senderCityStateZip",
+      label: "Your City, State, Zip Code",
+      type: "text",
+    },
     { name: "senderEmail", label: "Your Email", type: "text" },
     { name: "senderPhone", label: "Your Phone Number", type: "text" },
     { name: "date", label: "Date", type: "date" },
@@ -21,6 +25,11 @@ const businessLetter: Template = {
     { name: "recipientTitle", label: "Recipient's Title", type: "text" },
     { name: "company", label: "Company/Organization", type: "text" },
     { name: "recipientAddress", label: "Recipient's Address", type: "text" },
+    {
+      name: "recipientCityStateZip",
+      label: "Recipient's City, State, Zip Code",
+      type: "text",
+    },
     { name: "subject", label: "Subject", type: "text" },
     {
       name: "greeting",
@@ -39,7 +48,7 @@ const businessLetter: Template = {
   template: `
 {{senderName}}
 {{senderAddress}}
-{{senderCity}}
+{{senderCityStateZip}}
 Email: {{senderEmail}}
 Phone: {{senderPhone}}
 
@@ -49,6 +58,7 @@ Date: {{date}}
 {{recipientTitle}}
 {{company}}
 {{recipientAddress}}
+{{recipientCityStateZip}}
 
 Subject: {{subject}}
 
