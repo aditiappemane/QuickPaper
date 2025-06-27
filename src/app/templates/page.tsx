@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SearchBar from "@/components/SearchBar";
 import TemplateCard from "@/components/TemplateCard";
-import Template from "../app/Template";
+import Template from "@/app/Template";
 import { motion } from "framer-motion";
 import { FiFilter, FiGrid, FiList } from "react-icons/fi";
 import NoResultsFound from "@/components/NoResultsFound";
@@ -176,6 +176,7 @@ export default function TemplatesPage() {
               </div>
             </div>
 
+            {/* Results Section */}
             {filtered.length === 0 ? (
               <NoResultsFound searchTerm={search} />
             ) : (
@@ -195,7 +196,7 @@ export default function TemplatesPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.05 }}
                   >
-                    <TemplateCard {...template} />
+                    <TemplateCard {...template} viewMode={viewMode} />
                   </motion.div>
                 ))}
               </motion.div>

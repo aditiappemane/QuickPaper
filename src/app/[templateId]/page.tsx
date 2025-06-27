@@ -1,7 +1,7 @@
 "use client";
 import { useState, useMemo } from "react";
 import { notFound, useParams } from "next/navigation";
-import { templates } from "@/templates";
+import { templates } from "@/../templates";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FormRenderer from "@/components/FormRenderer";
