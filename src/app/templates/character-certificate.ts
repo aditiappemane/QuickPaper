@@ -19,23 +19,32 @@ const characterCertificate: Template = {
       label: "Institution/Organization Name",
       type: "text",
     },
+    {
+      name: "orgAddress",
+      label: "Institution/Organization Address",
+      type: "text",
+    },
     { name: "duration", label: "Duration of Association", type: "text" },
     { name: "issuerName", label: "Issuer's Name", type: "text" },
     { name: "issuerDesignation", label: "Issuer's Designation", type: "text" },
     { name: "date", label: "Date of Issue", type: "date" },
+    { name: "recipient", label: "Recipient (optional)", type: "text" },
   ],
   template: `
-[Institution/Organization Letterhead]
+{{organization}}
+{{orgAddress}}
 
 Date: {{date}}
+
+{{recipient ? ("To, " + recipient + "\\n") : ""}
 
 TO WHOM IT MAY CONCERN
 
 This is to certify that Mr./Ms. {{personName}} (ID: {{personId}}) has been a {{courseOrDesignation}} at {{organization}} for the period of {{duration}}.
 
-During this time, their conduct and character have been found to be good. To the best of our knowledge, there is nothing adverse against them.
+During this time, their conduct and character have been found to be exemplary. To the best of our knowledge, there is nothing adverse against them.
 
-This certificate is being issued upon their request for whatever purpose it may serve.
+This certificate is issued upon their request for whatever purpose it may serve.
 
 Sincerely,
 {{issuerName}}
