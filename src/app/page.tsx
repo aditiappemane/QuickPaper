@@ -164,17 +164,33 @@ export default function HomePage() {
                     <label className="block text-xs font-medium text-gray-700 mb-1 capitalize">
                       {key.replace(/([A-Z])/g, " $1")}
                     </label>
-                    <input
-                      type="text"
-                      value={value}
-                      onChange={(e) =>
-                        setLivePreviewValues((prev) => ({
-                          ...prev,
-                          [key]: e.target.value,
-                        }))
-                      }
-                      className="w-full border border-gray-200 rounded-md px-3 py-2 text-sm bg-white focus:border-blue-500 focus:outline-none"
-                    />
+                    {key === "handoverDetails" ? (
+                      <textarea
+                        value={value}
+                        onChange={(e) =>
+                          setLivePreviewValues((prev) => ({
+                            ...prev,
+                            [key]: e.target.value,
+                          }))
+                        }
+                        rows={3}
+                        placeholder="Type handover details here..."
+                        className="w-full border border-gray-200 rounded-md px-3 py-2 text-sm bg-white focus:border-blue-500 focus:outline-none resize-none"
+                      />
+                    ) : (
+                      <input
+                        type="text"
+                        value={value}
+                        onChange={(e) =>
+                          setLivePreviewValues((prev) => ({
+                            ...prev,
+                            [key]: e.target.value,
+                          }))
+                        }
+                        placeholder="Type here..."
+                        className="w-full border border-gray-200 rounded-md px-3 py-2 text-sm bg-white focus:border-blue-500 focus:outline-none"
+                      />
+                    )}
                   </div>
                 ))}
               </div>
