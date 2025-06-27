@@ -1,62 +1,61 @@
 "use client";
-import { useState, useEffect } from "react";
+import { TemplateField } from "@/app/templates/types";
 
-type Field = {
-  name: string;
-  label: string;
-  type: "text" | "textarea" | "date" | "number";
-};
+interface FormRendererProps {
+  fields: TemplateField[];
+  values: Record<string, string>;
+  onChange: (values: Record<string, string>) => void;
+}
 
 export default function FormRenderer({
   fields,
   values,
   onChange,
-}: {
-  fields: Field[];
-  values: Record<string, string>;
-  onChange: (values: Record<string, string>) => void;
-}) {
-  const [local, setLocal] = useState(values);
-
-  useEffect(() => {
-    setLocal(values);
-  }, [values]);
-
-  function handleChange(name: string, value: string) {
-    const updated = { ...local, [name]: value };
-    setLocal(updated);
-    onChange(updated);
-  }
+}: FormRendererProps) {
+  const handleChange = (name: string, value: string) => {
+    onChange({ ...values, [name]: value });
+  };
 
   return (
-    <form className="flex flex-col gap-5 w-full max-w-lg">
+    <div className="space-y-6">
       {fields.map((field) => (
-        <div key={field.name} className="flex flex-col gap-1">
-          <label
-            htmlFor={field.name}
-            className="text-sm font-medium text-neutral-700"
-          >
+        <div key={field.name} className="space-y-2">
+          <label className="block text-sm font-medium text-gray-700">
             {field.label}
           </label>
+
           {field.type === "textarea" ? (
             <textarea
-              id={field.name}
-              value={local[field.name] || ""}
+              value={values[field.name] || ""}
               onChange={(e) => handleChange(field.name, e.target.value)}
-              className="rounded-xl border border-neutral-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all px-4 py-2 text-base bg-white resize-none shadow-sm"
+              className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               rows={4}
+              placeholder={`Enter ${field.label.toLowerCase()}`}
             />
+          ) : field.type === "select" ? (
+            <select
+              value={values[field.name] || ""}
+              onChange={(e) => handleChange(field.name, e.target.value)}
+              className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+              <option value="">Select {field.label}</option>
+              {field.options?.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
           ) : (
             <input
-              id={field.name}
               type={field.type}
-              value={local[field.name] || ""}
+              value={values[field.name] || ""}
               onChange={(e) => handleChange(field.name, e.target.value)}
-              className="rounded-xl border border-neutral-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all px-4 py-2 text-base bg-white shadow-sm"
+              className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder={`Enter ${field.label.toLowerCase()}`}
             />
           )}
         </div>
       ))}
-    </form>
+    </div>
   );
 }
