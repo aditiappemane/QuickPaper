@@ -385,19 +385,20 @@ export default function HomePage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.7 }}
-          className="w-full max-w-2xl text-center mb-16"
+          className="w-full max-w-2xl mx-auto mb-16 text-center"
         >
-          <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-700 rounded-full text-lg font-medium mb-6">
-            {"✨"} New templates added weekly
-          </div>
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">
-            Ready to create professional documents?
+          <span className="inline-flex items-center px-4 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium mb-5">
+            ✨ New templates added weekly
+          </span>
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-5 leading-snug">
+            Ready to create{" "}
+            <span className="text-blue-600">professional documents</span>?
           </h2>
           <Link
             href="/templates"
-            className="inline-flex items-center px-10 py-5 bg-blue-600 text-white font-semibold rounded-2xl text-xl shadow-xl hover:bg-blue-700 transition-all"
+            className="inline-flex items-center px-7 py-3 bg-blue-600 text-white font-semibold rounded-xl text-base shadow hover:bg-blue-700 transition-all"
           >
-            Get Started <FiArrowRight className="ml-3" />
+            Get Started <FiArrowRight className="ml-2" />
           </Link>
         </motion.section>
       </main>
