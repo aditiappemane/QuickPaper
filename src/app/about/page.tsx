@@ -19,16 +19,11 @@ export default function AboutPage() {
               About QuickPaper
             </h1>
             <p className="text-lg text-neutral-600 mb-6">
-              QuickPaper is a modern web app designed to help you generate
-              real-life formal documents—like leave applications, resignation
-              letters, and more—instantly from beautiful, ready-to-use
-              templates.
+              QuickPaper helps you create professional letters and applications
+              instantly from beautiful templates.
             </p>
             <p className="text-neutral-500 mb-6">
-              No sign-in required, no clutter. Just search, fill out a simple
-              form, preview your document live, and copy or download it as a
-              PDF. QuickPaper is crafted for students, professionals, and anyone
-              who needs formal documents fast.
+              No sign-in required, no clutter. Just fill, preview, and export.
             </p>
             <div className="flex flex-col items-center gap-2 mt-8">
               <span className="font-medium text-neutral-800">Built with:</span>

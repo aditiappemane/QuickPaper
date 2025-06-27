@@ -1,6 +1,6 @@
 "use client";
 import { useState, useMemo } from "react";
-import { notFound } from "next/navigation";
+import { notFound, useParams } from "next/navigation";
 import { templates } from "@/templates";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -14,12 +14,9 @@ function fillTemplate(template: string, values: Record<string, string>) {
   return template.replace(/{{(\w+)}}/g, (_, key) => values[key]?.trim() || "");
 }
 
-export default function TemplatePage({
-  params,
-}: {
-  params: { templateId: string };
-}) {
-  const templateId = params.templateId;
+export default function TemplatePage() {
+  const params = useParams();
+  const templateId = params.templateId as string;
 
   const templateData = useMemo(
     () => templates.find((t) => t.id === templateId),
@@ -44,7 +41,10 @@ export default function TemplatePage({
       <Template>
         <div className="max-w-6xl mx-auto py-12 px-4 grid grid-cols-1 lg:grid-cols-2 gap-10">
           <div>
-            <div className="mb-6 flex items-center gap-2 text-sm text-neutral-500">
+            <div
+              className="mb-6 flex items-center gap极速赛车开奖网
+2 text-sm text-neutral-500"
+            >
               <Link href="/" className="hover:underline text-blue-600">
                 Home
               </Link>
@@ -73,7 +73,8 @@ export default function TemplatePage({
                 onClick={() => {
                   navigator.clipboard.writeText(filled);
                 }}
-                className="px-4 py-2 rounded-xl bg-blue-50 text-blue-700 hover:bg-blue-100 transition-all font-medium"
+                className="px-4 py-2 rounded-xl bg-blue-50 text-blue极速赛车开奖网
+700 hover:bg-blue-100 transition-all font-medium"
               >
                 Copy Text
               </button>
