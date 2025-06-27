@@ -68,7 +68,7 @@ export default function HomePage() {
               className="text-xl md:text-2xl text-gray-600 mb-10 font-light"
             >
               QuickPaper makes it effortless to generate, customize, and
-              download professional documents—no formatting, no friction, just
+              download professional documents - no formatting, no friction, just
               results.
             </motion.p>
             <motion.div
@@ -98,35 +98,36 @@ export default function HomePage() {
                   New & Trending
                 </span>
               </div>
-              <div className="grid grid-cols-1 gap-4">
+              <div className="grid grid-cols-2 gap-4">
                 {featuredNewTemplates.map((t, i) => (
                   <motion.div
                     key={t.id}
-                    initial={{ opacity: 0, x: 24, filter: "blur(6px)" }}
-                    animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                    initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
+                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                     transition={{
-                      duration: 0.6,
-                      delay: 0.25 + i * 0.07,
+                      duration: 0.7,
+                      delay: 0.25 + i * 0.09,
                       ease: "easeOut",
                     }}
                   >
                     <Link
                       href={`/templates/${t.id}`}
-                      className="block bg-white border border-gray-100 rounded-xl shadow hover:shadow-lg p-4 transition-all group"
+                      className="group aspect-square flex flex-col items-center justify-center bg-white border border-gray-100 rounded-2xl shadow hover:shadow-xl transition-all hover:-translate-y-1 px-4 py-6 cursor-pointer"
+                      style={{ minHeight: 0, minWidth: 0 }}
                     >
-                      <div className="flex items-center gap-2 mb-1">
-                        <FiFileText className="text-blue-500 text-lg" />
-                        <span className="bg-green-50 text-green-700 text-xs font-semibold px-2 py-0.5 rounded-full">
+                      <div className="flex items-center gap-2 mb-2">
+                        <FiFileText className="text-blue-500 text-xl" />
+                        <span className="bg-green-50 text-green-700 text-xs font-semibold px-2 py-1 rounded-full">
                           NEW
                         </span>
                       </div>
-                      <div className="font-semibold text-gray-900 group-hover:text-blue-600 transition">
+                      <div className="font-semibold text-gray-900 text-center text-base leading-tight mb-1 group-hover:text-blue-600 transition">
                         {t.title}
                       </div>
-                      <div className="text-gray-500 text-xs mt-1">
+                      <div className="text-gray-500 text-xs text-center mb-3">
                         {t.description}
                       </div>
-                      <span className="text-blue-500 text-xs mt-2 group-hover:underline flex items-center gap-1">
+                      <span className="mt-auto text-blue-500 text-xs group-hover:underline flex items-center gap-1 font-medium">
                         Try now <FiArrowRight className="inline" />
                       </span>
                     </Link>
