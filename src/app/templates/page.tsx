@@ -1,7 +1,7 @@
 "use client";
 import { useState, useMemo } from "react";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+// import Footer from "@/components/Footer";
 import SearchBar from "@/components/SearchBar";
 import TemplateCard from "@/components/TemplateCard";
 import Template from "@/app/Template";
@@ -149,7 +149,7 @@ export default function TemplatesPage() {
           </div>
         </main>
       </Template>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
