@@ -8,8 +8,9 @@ import FormRenderer from "@/components/FormRenderer";
 import PDFExporter from "@/components/PDFExporter";
 import Template from "../Template";
 import Link from "next/link";
-import { FiChevronDown, FiChevronUp, FiCopy, FiHome } from "react-icons/fi";
+import { FiChevronDown, FiChevronUp, FiHome } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
+import CopyTextButton from "@/components/CopyTextButton";
 
 function fillTemplate(template: string, values: Record<string, string>) {
   return template.replace(/{{(\w+)}}/g, (_, key) => values[key]?.trim() || "");
@@ -77,7 +78,6 @@ export default function TemplatePage() {
               />
             </div>
 
-            {/* Action Buttons */}
             <div className="flex flex-wrap gap-3">
               <button
                 onClick={() => setValues(initialState)}
@@ -86,12 +86,7 @@ export default function TemplatePage() {
                 Reset Form
               </button>
 
-              <button
-                onClick={() => navigator.clipboard.writeText(filled)}
-                className="flex items-center px-5 py-3 bg-blue-50 text-blue-700 rounded-xl hover:bg-blue-100 transition-all font-medium"
-              >
-                <FiCopy className="mr-2" /> Copy Text
-              </button>
+              <CopyTextButton textToCopy={filled} />
 
               <PDFExporter
                 content={filled}
@@ -100,7 +95,6 @@ export default function TemplatePage() {
             </div>
           </div>
 
-          {/* Preview Section */}
           <div className="sticky top-24">
             <div className="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
               <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-gradient-to-r from-blue-50/80 via-white/80 to-slate-50/80">
@@ -141,7 +135,7 @@ export default function TemplatePage() {
                         {filled.slice(0, 300)}
                         {filled.length > 300 && "..."}
                         <div className="mt-4 text-xs text-blue-500">
-                          (Preview - scroll to see more)
+                          (Preview - click &#39;View Full&#39; to expand)
                         </div>
                       </>
                     )
