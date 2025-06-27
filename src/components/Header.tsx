@@ -38,6 +38,12 @@ export default function Header() {
           >
             About
           </Link>
+          <Link
+            href="/request-template"
+            className="text-blue-600 font-semibold hover:underline transition-colors"
+          >
+            Request Template
+          </Link>
         </nav>
       </div>
     </motion.header>
