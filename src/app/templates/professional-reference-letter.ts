@@ -18,6 +18,7 @@ const professionalReferenceLetter: Template = {
       label: "Your Company/Organization",
       type: "text",
     },
+    { name: "referrerAddress", label: "Your Address", type: "text" },
     { name: "referrerContact", label: "Your Email or Phone", type: "text" },
     { name: "date", label: "Date", type: "date" },
     { name: "recipientName", label: "Recipient's Name", type: "text" },
@@ -27,6 +28,8 @@ const professionalReferenceLetter: Template = {
       label: "Recipient's Company/Organization",
       type: "text",
     },
+    { name: "recipientAddress", label: "Recipient's Address", type: "text" },
+    { name: "subject", label: "Subject (optional)", type: "text" },
     { name: "candidateName", label: "Candidate's Name", type: "text" },
     {
       name: "relationship",
@@ -46,6 +49,7 @@ const professionalReferenceLetter: Template = {
 {{referrerName}}
 {{referrerPosition}}
 {{referrerCompany}}
+{{referrerAddress}}
 Contact: {{referrerContact}}
 
 Date: {{date}}
@@ -53,8 +57,9 @@ Date: {{date}}
 {{recipientName}}
 {{recipientPosition}}
 {{recipientCompany}}
+{{recipientAddress}}
 
-Subject: Professional Reference for {{candidateName}}
+Subject: {{subject || ("Professional Reference for " + candidateName)}}
 
 Dear {{recipientName}},
 
