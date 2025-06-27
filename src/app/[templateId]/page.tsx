@@ -12,7 +12,6 @@ import { FiChevronDown, FiChevronUp, FiHome } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
 import CopyTextButton from "@/components/CopyTextButton";
 
-// Fill template and use field label as placeholder if empty
 function fillTemplate(
   template: string,
   values: Record<string, string>,
@@ -22,7 +21,6 @@ function fillTemplate(
     const value = values[key]?.trim();
     const field = fields.find((f) => f.name === key);
     if (value) return value;
-    // Use label as placeholder if field found, otherwise just underline
     return field
       ? `<span class="placeholder-in-preview">${field.label}</span>`
       : `<span class="placeholder-in-preview">&nbsp;</span>`;
@@ -57,11 +55,9 @@ export default function TemplatePage() {
   const previewLength = 300;
   const isLong = filled.replace(/<[^>]+>/g, "").length > previewLength;
 
-  // For preview, cut off at previewLength (excluding tags)
   function getPreview(html: string) {
     const text = html.replace(/<[^>]+>/g, "");
     if (text.length <= previewLength) return html;
-    // Find where to cut in the HTML string
     let count = 0,
       i = 0;
     for (; i < html.length && count < previewLength; i++) {
@@ -78,9 +74,8 @@ export default function TemplatePage() {
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-white via-slate-50 to-blue-50">
       <Header />
       <Template>
-        <div className="max-w-6xl mx-auto py-12 px-4 grid grid-cols-1 lg:grid-cols-2 gap-10">
-          {/* Form Section */}
-          <div className="space-y-8">
+        <div className="max-w-6xl mx-auto py-12 px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-10">
+          <div className="space-y-8 w-full max-w-xl mx-auto">
             <div className="mb-6 flex items-center gap-2 text-sm text-gray-500">
               <Link
                 href="/"
@@ -105,7 +100,6 @@ export default function TemplatePage() {
               <p className="text-gray-600">{templateData.description}</p>
             </div>
 
-            {/* Form Container */}
             <div className="bg-white rounded-2xl shadow border border-gray-100 p-6">
               <FormRenderer
                 fields={templateData.fields}
@@ -114,7 +108,6 @@ export default function TemplatePage() {
               />
             </div>
 
-            {/* Action Buttons */}
             <div className="flex flex-wrap gap-3">
               <button
                 onClick={() => setValues(initialState)}
@@ -132,8 +125,7 @@ export default function TemplatePage() {
             </div>
           </div>
 
-          {/* Preview Section */}
-          <div className="sticky top-24">
+          <div className="sticky top-24 w-full max-w-xl mx-auto">
             <div className="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
               <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-gradient-to-r from-blue-50/80 via-white/80 to-slate-50/80">
                 <h3 className="font-semibold text-gray-800 text-lg flex items-center gap-2">
