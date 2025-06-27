@@ -27,6 +27,7 @@ const jobOfferAcceptance: Template = {
     { name: "startDate", label: "Start Date", type: "date" },
     { name: "salary", label: "Salary/CTC", type: "text" },
     { name: "referenceNumber", label: "Offer Reference Number", type: "text" },
+    { name: "subject", label: "Subject (optional)", type: "text" },
     {
       name: "gratitude",
       label: "Gratitude/Excitement Statement",
@@ -52,11 +53,11 @@ To,
 {{company}}
 {{companyAddress}}
 
-Subject: Job Offer Acceptance – {{yourName}}
+Subject: {{subject || ("Job Offer Acceptance – " + yourName)}}
 
 Dear {{recipientName}},
 
-I am writing to formally accept the offer for the position of {{jobTitle}} at {{company}}, as per the offer letter (Ref: {{referenceNumber}}). Thank you for this exciting opportunity. {{gratitude}}
+I am writing to formally accept the offer for the position of {{jobTitle}} at {{company}}, as per the offer letter (Ref: {{referenceNumber}}). {{gratitude}}
 
 I confirm my start date as {{startDate}} and agree to the terms outlined in the offer letter, including the annual CTC of {{salary}}. Please let me know if there are any additional documents or steps required before my joining.
 
