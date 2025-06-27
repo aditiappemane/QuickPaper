@@ -15,15 +15,51 @@ export default function PDFExporter({
 
   function handleDownload() {
     if (!previewRef.current) return;
+
+    const tempContainer = document.createElement("div");
+    tempContainer.style.position = "fixed";
+    tempContainer.style.top = "0";
+    tempContainer.style.left = "0";
+    tempContainer.style.width = "100%";
+    tempContainer.style.height = "100%";
+    tempContainer.style.opacity = "0";
+    tempContainer.style.pointerEvents = "none";
+    tempContainer.style.zIndex = "-1000";
+
+    const contentClone = previewRef.current.cloneNode(true) as HTMLDivElement;
+    contentClone.style.display = "block";
+    contentClone.style.visibility = "visible";
+    contentClone.style.position = "absolute";
+    contentClone.style.width = "210mm";
+    contentClone.style.minHeight = "297mm";
+    contentClone.style.padding = "20mm";
+    contentClone.style.fontFamily = "sans-serif";
+    contentClone.style.fontSize = "12pt";
+    contentClone.style.lineHeight = "1.6";
+
+    tempContainer.appendChild(contentClone);
+    document.body.appendChild(tempContainer);
+
     html2pdf()
       .set({
-        margin: 0.5,
+        margin: 0,
         filename: fileName,
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
+        html2canvas: {
+          scale: 2,
+          useCORS: true,
+          logging: false,
+        },
+        jsPDF: {
+          unit: "mm",
+          format: "a4",
+          orientation: "portrait",
+        },
       })
-      .from(previewRef.current)
-      .save();
+      .from(contentClone)
+      .save()
+      .then(() => {
+        document.body.removeChild(tempContainer);
+      });
   }
 
   return (
@@ -38,13 +74,20 @@ export default function PDFExporter({
         <FiDownload size={18} />
         Download PDF
       </motion.button>
-      <div ref={previewRef} className="hidden">
-        <div
-          className="p-8 font-sans text-base text-neutral-800 whitespace-pre-line"
-          style={{ minWidth: 400 }}
-        >
-          {content}
-        </div>
+
+      <div
+        ref={previewRef}
+        className="hidden"
+        style={{
+          whiteSpace: "pre-line",
+          fontFamily: "sans-serif",
+          fontSize: "12pt",
+          lineHeight: "1.6",
+          padding: "0",
+          margin: "0",
+        }}
+      >
+        {content}
       </div>
     </div>
   );
