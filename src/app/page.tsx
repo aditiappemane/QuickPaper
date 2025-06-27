@@ -8,6 +8,7 @@ import {
   FiStar,
   FiEdit,
 } from "react-icons/fi";
+import { FiShield, FiTrendingUp, FiUsers } from "react-icons/fi";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
@@ -281,37 +282,102 @@ export default function HomePage() {
         <motion.section
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.6 }}
-          className="w-full max-w-5xl mb-24"
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="w-full max-w-5xl mx-auto mb-24"
         >
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-6 flex flex-col items-center text-center hover:shadow-lg transition-all">
+            <motion.div
+              initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+              className="bg-white border border-gray-100 rounded-2xl shadow-sm p-6 flex flex-col items-center text-center hover:shadow-lg transition-all"
+            >
               <FiLayers className="text-blue-500 text-3xl mb-4" />
               <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 Curated Templates
               </h3>
               <p className="text-gray-600 text-base">
-                Professionally designed templates for every need
+                Professionally designed templates for every need, handpicked by
+                experts.
               </p>
-            </div>
-            <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-6 flex flex-col items-center text-center hover:shadow-lg transition-all">
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+              className="bg-white border border-gray-100 rounded-2xl shadow-sm p-6 flex flex-col items-center text-center hover:shadow-lg transition-all"
+            >
               <FiCheckCircle className="text-green-500 text-3xl mb-4" />
               <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 Instant Results
               </h3>
               <p className="text-gray-600 text-base">
-                Generate documents in seconds, not hours
+                Generate documents instantly with zero wait time and no hassle.
               </p>
-            </div>
-            <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-6 flex flex-col items-center text-center hover:shadow-lg transition-all">
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+              className="bg-white border border-gray-100 rounded-2xl shadow-sm p-6 flex flex-col items-center text-center hover:shadow-lg transition-all"
+            >
               <FiFileText className="text-purple-500 text-3xl mb-4" />
               <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 Easy Customization
               </h3>
               <p className="text-gray-600 text-base">
-                Personalize templates with simple forms
+                Personalize templates effortlessly with intuitive forms and live
+                preview.
               </p>
-            </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+              className="bg-white border border-gray-100 rounded-2xl shadow-sm p-6 flex flex-col items-center text-center hover:shadow-lg transition-all"
+            >
+              <FiShield className="text-red-500 text-3xl mb-4" />
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                Secure & Private
+              </h3>
+              <p className="text-gray-600 text-base">
+                Your data is safe with us. We prioritize privacy and security.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
+              className="bg-white border border-gray-100 rounded-2xl shadow-sm p-6 flex flex-col items-center text-center hover:shadow-lg transition-all"
+            >
+              <FiTrendingUp className="text-indigo-500 text-3xl mb-4" />
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                Continuous Updates
+              </h3>
+              <p className="text-gray-600 text-base">
+                We constantly add new templates and features to keep you ahead.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+              className="bg-white border border-gray-100 rounded-2xl shadow-sm p-6 flex flex-col items-center text-center hover:shadow-lg transition-all"
+            >
+              <FiUsers className="text-pink-500 text-3xl mb-4" />
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                Community Driven
+              </h3>
+              <p className="text-gray-600 text-base">
+                Built with feedback from a vibrant community of professionals
+                and students.
+              </p>
+            </motion.div>
           </div>
         </motion.section>
 
