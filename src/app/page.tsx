@@ -3,14 +3,16 @@ import Link from "next/link";
 import {
   FiArrowRight,
   FiLayers,
-  FiSearch,
   FiCheckCircle,
   FiFileText,
   FiStar,
+  FiEdit,
+  FiEye,
 } from "react-icons/fi";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const featuredNewTemplates = [
   {
@@ -40,7 +42,59 @@ const featuredNewTemplates = [
   },
 ];
 
+const sampleTemplate = {
+  title: "Leave Application",
+  template: `{{employeeName}}
+{{designation}}, {{department}}
+{{company}}
+
+Date: {{date}}
+
+To,
+{{managerName}}
+{{designation}}
+{{company}}
+
+Subject: Application for {{leaveType}} Leave
+
+Dear {{managerName}},
+
+I am writing to formally request a {{leaveType}} leave of absence from {{startDate}} to {{endDate}} due to {{reason}}.
+
+During my absence, I have arranged for {{handoverDetails}} to ensure that my responsibilities are managed without disruption. Should you require any urgent assistance, I will be reachable at my email or phone.
+
+I kindly request you to grant me leave for the mentioned period. I appreciate your understanding and support.
+
+Thank you for your consideration.
+
+Sincerely,
+{{employeeName}}`,
+};
+
 export default function HomePage() {
+  const [livePreviewValues, setLivePreviewValues] = useState({
+    employeeName: "John Doe",
+    designation: "Senior Developer",
+    department: "Engineering",
+    company: "Tech Innovations Inc.",
+    date: new Date().toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }),
+    managerName: "Jane Smith",
+    leaveType: "Annual",
+    startDate: "July 15, 2025",
+    endDate: "July 22, 2025",
+    reason: "family vacation",
+    handoverDetails: "Alex Johnson (alex@company.com) will handle my tasks",
+  });
+
+  const filledTemplate = Object.entries(livePreviewValues).reduce(
+    (str, [key, value]) => str.replace(new RegExp(`{{${key}}}`, "g"), value),
+    sampleTemplate.template
+  );
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-white via-slate-50 to-blue-50">
       <Header />
@@ -49,167 +103,208 @@ export default function HomePage() {
           initial={{ opacity: 0, filter: "blur(16px)" }}
           animate={{ opacity: 1, filter: "blur(0px)" }}
           transition={{ duration: 0.85, ease: "easeOut" }}
-          className="w-full max-w-6xl flex flex-col md:flex-row items-center justify-between gap-12 pt-24 pb-20"
+          className="w-full max-w-6xl flex flex-col items-center text-center pt-24 pb-16"
         >
-          <div className="flex-1 text-left">
-            <motion.h1
-              initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-              className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-8 leading-tight"
-            >
-              <span className="block">Documents,</span>
-              <span className="block text-blue-600">Redesigned for You.</span>
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.7, delay: 0.18, ease: "easeOut" }}
-              className="text-xl md:text-2xl text-gray-600 mb-10 font-light"
-            >
-              QuickPaper makes it effortless to generate, customize, and
-              download professional documents - no formatting, no friction, just
-              results.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.6, delay: 0.23, ease: "easeOut" }}
-            >
-              <Link
-                href="/templates"
-                className="inline-flex items-center px-10 py-5 bg-blue-600 text-white font-semibold rounded-2xl text-xl shadow-xl hover:bg-blue-700 transition-all group"
-              >
-                <span>Browse Templates</span>
-                <FiArrowRight className="ml-3 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </motion.div>
-          </div>
-          <motion.div
-            initial={{ opacity: 0, x: 40, filter: "blur(12px)" }}
-            animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-            transition={{ duration: 0.8, delay: 0.18, ease: "easeOut" }}
-            className="flex-1 flex justify-center"
+          <motion.h1
+            initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+            className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-8 leading-tight"
           >
-            <div className="w-full max-w-md bg-gradient-to-br from-blue-100 via-white to-indigo-100 rounded-3xl shadow-2xl p-8 flex flex-col gap-4">
-              <div className="flex items-center gap-2 mb-2">
-                <FiStar className="text-yellow-500 text-2xl" />
-                <span className="text-lg font-semibold text-blue-700">
-                  New & Trending
-                </span>
+            <span className="block">Create Professional</span>
+            <span className="block text-blue-600">Documents in Seconds</span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 0.7, delay: 0.18, ease: "easeOut" }}
+            className="text-xl md:text-2xl text-gray-600 mb-10 font-light max-w-3xl"
+          >
+            QuickPaper helps you generate, customize, and download polished
+            documents with zero formatting effort.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 0.6, delay: 0.23, ease: "easeOut" }}
+          >
+            <Link
+              href="/templates"
+              className="inline-flex items-center px-10 py-5 bg-blue-600 text-white font-semibold rounded-2xl text-xl shadow-xl hover:bg-blue-700 transition-all group"
+            >
+              <span>Browse Templates</span>
+              <FiArrowRight className="ml-3 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </motion.div>
+        </motion.section>
+
+        <motion.section
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="w-full max-w-6xl bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl shadow-xl p-8 mb-20"
+        >
+          <div className="flex flex-col md:flex-row gap-10">
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-6">
+                <FiEdit className="text-blue-600 text-2xl" />
+                <h2 className="text-2xl font-bold text-gray-900">
+                  Live Preview Demo
+                </h2>
               </div>
-              <div className="grid grid-cols-2 gap-4">
-                {featuredNewTemplates.map((t, i) => (
-                  <motion.div
-                    key={t.id}
-                    initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
-                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                    transition={{
-                      duration: 0.7,
-                      delay: 0.25 + i * 0.09,
-                      ease: "easeOut",
-                    }}
-                  >
-                    <Link
-                      href={`/templates/${t.id}`}
-                      className="group aspect-square flex flex-col items-center justify-center bg-white border border-gray-100 rounded-2xl shadow hover:shadow-xl transition-all hover:-translate-y-1 px-4 py-6 cursor-pointer"
-                      style={{ minHeight: 0, minWidth: 0 }}
-                    >
-                      <div className="flex items-center gap-2 mb-2">
-                        <FiFileText className="text-blue-500 text-xl" />
-                        <span className="bg-green-50 text-green-700 text-xs font-semibold px-2 py-1 rounded-full">
-                          NEW
-                        </span>
-                      </div>
-                      <div className="font-semibold text-gray-900 text-center text-base leading-tight mb-1 group-hover:text-blue-600 transition">
-                        {t.title}
-                      </div>
-                      <div className="text-gray-500 text-xs text-center mb-3">
-                        {t.description}
-                      </div>
-                      <span className="mt-auto text-blue-500 text-xs group-hover:underline flex items-center gap-1 font-medium">
-                        Try now <FiArrowRight className="inline" />
-                      </span>
-                    </Link>
-                  </motion.div>
+              <p className="text-gray-600 mb-8">
+                See how QuickPaper works. Fill in the details and watch your
+                document update in real-time.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {Object.entries(livePreviewValues).map(([key, value]) => (
+                  <div key={key}>
+                    <label className="block text-sm font-medium text-gray-700 mb-1 capitalize">
+                      {key.replace(/([A-Z])/g, " $1")}
+                    </label>
+                    <input
+                      type="text"
+                      value={value}
+                      onChange={(e) =>
+                        setLivePreviewValues((prev) => ({
+                          ...prev,
+                          [key]: e.target.value,
+                        }))
+                      }
+                      className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-blue-500 focus:outline-none transition text-lg bg-white"
+                    />
+                  </div>
                 ))}
               </div>
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-6">
+                <FiEye className="text-purple-600 text-2xl" />
+                <h2 className="text-2xl font-bold text-gray-900">
+                  Generated Document
+                </h2>
+              </div>
+              <div className="bg-white border border-gray-200 rounded-xl shadow p-6 h-full">
+                <pre className="whitespace-pre-wrap font-sans text-gray-800">
+                  {filledTemplate}
+                </pre>
+              </div>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* New & Trending Templates - Square Cards in a Box */}
+        <motion.section
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+          className="w-full flex justify-center mb-20"
+        >
+          <motion.div
+            initial={{ opacity: 0, filter: "blur(18px)" }}
+            animate={{ opacity: 1, filter: "blur(0px)" }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            className="w-full max-w-6xl bg-gradient-to-br from-blue-50 via-white to-indigo-50 rounded-3xl shadow-2xl p-8 md:p-12"
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <FiStar className="text-yellow-500 text-3xl" />
+              <h2 className="text-3xl font-bold text-blue-700">
+                New & Trending Templates
+              </h2>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {featuredNewTemplates.map((t, i) => (
+                <motion.div
+                  key={t.id}
+                  initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
+                  animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                  transition={{
+                    duration: 0.7,
+                    delay: 0.15 + i * 0.09,
+                    ease: "easeOut",
+                  }}
+                >
+                  <Link
+                    href={`/templates/${t.id}`}
+                    className="group aspect-square flex flex-col items-center justify-center bg-white border border-gray-100 rounded-2xl shadow hover:shadow-xl transition-all hover:-translate-y-1 px-4 py-6 cursor-pointer"
+                    style={{ minHeight: 0, minWidth: 0 }}
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <FiFileText className="text-blue-500 text-xl" />
+                      <span className="bg-green-50 text-green-700 text-xs font-semibold px-2 py-1 rounded-full">
+                        NEW
+                      </span>
+                    </div>
+                    <div className="font-semibold text-gray-900 text-center text-base leading-tight mb-1 group-hover:text-blue-600 transition">
+                      {t.title}
+                    </div>
+                    <div className="text-gray-500 text-xs text-center mb-3">
+                      {t.description}
+                    </div>
+                    <span className="mt-auto text-blue-500 text-xs group-hover:underline flex items-center gap-1 font-medium">
+                      Try now <FiArrowRight className="inline" />
+                    </span>
+                  </Link>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         </motion.section>
 
         <motion.section
-          initial={{ opacity: 0, filter: "blur(10px)" }}
-          animate={{ opacity: 1, filter: "blur(0px)" }}
-          transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
-          className="w-full max-w-6xl mx-auto py-12"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.6 }}
+          className="w-full max-w-6xl mb-24"
         >
           <div className="grid md:grid-cols-3 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.6, delay: 0.35, ease: "easeOut" }}
-              className="bg-white rounded-2xl shadow border border-gray-100 p-8 flex flex-col items-center text-center hover:shadow-lg transition-all"
-            >
-              <FiLayers className="text-blue-500 text-4xl mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+            <div className="bg-gradient-to-br from-white to-blue-50 border border-gray-100 rounded-3xl shadow-lg p-8 flex flex-col items-center text-center hover:shadow-xl transition-all">
+              <FiLayers className="text-blue-500 text-5xl mb-6" />
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
                 Curated Templates
               </h3>
-              <p className="text-gray-500 text-base">
-                A growing library of modern, ready-to-use templates for every
-                professional need.
+              <p className="text-gray-600 text-lg">
+                Professionally designed templates for every need
               </p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-              className="bg-white rounded-2xl shadow border border-gray-100 p-8 flex flex-col items-center text-center hover:shadow-lg transition-all"
-            >
-              <FiCheckCircle className="text-green-500 text-4xl mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+            </div>
+            <div className="bg-gradient-to-br from-white to-blue-50 border border-gray-100 rounded-3xl shadow-lg p-8 flex flex-col items-center text-center hover:shadow-xl transition-all">
+              <FiCheckCircle className="text-green-500 text-5xl mb-6" />
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
                 Instant Results
               </h3>
-              <p className="text-gray-500 text-base">
-                Fill a simple form, preview, and download. No login, no waiting,
-                just results.
+              <p className="text-gray-600 text-lg">
+                Generate documents in seconds, not hours
               </p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.6, delay: 0.45, ease: "easeOut" }}
-              className="bg-white rounded-2xl shadow border border-gray-100 p-8 flex flex-col items-center text-center hover:shadow-lg transition-all"
-            >
-              <FiSearch className="text-purple-500 text-4xl mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Lightning Search
+            </div>
+            <div className="bg-gradient-to-br from-white to-blue-50 border border-gray-100 rounded-3xl shadow-lg p-8 flex flex-col items-center text-center hover:shadow-xl transition-all">
+              <FiFileText className="text-purple-500 text-5xl mb-6" />
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                Easy Customization
               </h3>
-              <p className="text-gray-500 text-base">
-                Instantly find what you need with blazing fast search and
-                category filters.
+              <p className="text-gray-600 text-lg">
+                Personalize templates with simple forms
               </p>
-            </motion.div>
+            </div>
           </div>
         </motion.section>
 
         <motion.section
-          initial={{ opacity: 0, filter: "blur(6px)" }}
-          animate={{ opacity: 1, filter: "blur(0px)" }}
-          transition={{ duration: 0.7, delay: 0.6, ease: "easeOut" }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.7 }}
           className="w-full max-w-2xl text-center mb-16"
         >
-          <div className="inline-flex items-center px-4 py-2 bg-green-50 text-green-700 rounded-full text-sm font-medium mb-4">
-            {"✨"} New templates every week
+          <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-700 rounded-full text-lg font-medium mb-6">
+            {"✨"} New templates added weekly
           </div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Ready to create your next document?
+          <h2 className="text-4xl font-bold text-gray-900 mb-6">
+            Ready to create professional documents?
           </h2>
           <Link
             href="/templates"
-            className="inline-flex items-center px-8 py-4 bg-blue-600 text-white font-semibold rounded-xl text-lg shadow hover:bg-blue-700 transition-all"
+            className="inline-flex items-center px-10 py-5 bg-blue-600 text-white font-semibold rounded-2xl text-xl shadow-xl hover:bg-blue-700 transition-all"
           >
-            Get Started <FiArrowRight className="ml-2" />
+            Get Started <FiArrowRight className="ml-3" />
           </Link>
         </motion.section>
       </main>
