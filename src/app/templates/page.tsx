@@ -8,7 +8,7 @@ import Template from "@/app/Template";
 import { motion } from "framer-motion";
 import { FiFilter, FiGrid, FiList } from "react-icons/fi";
 import NoResultsFound from "@/components/NoResultsFound";
-import { templates } from "@/templates";
+import { templates } from "@/app/templates";
 
 const categories = ["All", "Student", "Work", "Finance"];
 
@@ -56,7 +56,7 @@ export default function TemplatesPage() {
                   Choose from {templates.length} professional templates
                 </p>
                 <div className="inline-flex items-center px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">
-                  ✨ Updated weekly with new templates
+                  Updated weekly with new templates
                 </div>
               </motion.div>
 
