@@ -193,60 +193,75 @@ export default function HomePage() {
           </div>
         </motion.section>
 
-        {/* New & Trending Templates - Square Cards in a Box */}
+        {/* New & Trending Templates Section */}
         <motion.section
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="w-full flex justify-center mb-20"
+          className="w-full flex justify-center mb-16"
         >
           <motion.div
             initial={{ opacity: 0, filter: "blur(18px)" }}
             animate={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ duration: 0.9, ease: "easeOut" }}
-            className="w-full max-w-6xl bg-gradient-to-br from-blue-50 via-white to-indigo-50 rounded-3xl shadow-2xl p-8 md:p-12"
+            className="w-full max-w-4xl bg-gradient-to-br from-blue-50 via-white to-indigo-50 rounded-2xl shadow-xl p-4 md:p-6 flex flex-col lg:flex-row items-center gap-6"
           >
-            <div className="flex items-center gap-3 mb-8">
-              <FiStar className="text-yellow-500 text-3xl" />
-              <h2 className="text-3xl font-bold text-blue-700">
-                New & Trending Templates
-              </h2>
+            <div className="flex-1 flex flex-col justify-center items-start mb-6 lg:mb-0">
+              <div className="flex items-center gap-2 mb-3">
+                <FiStar className="text-yellow-500 text-2xl" />
+                <h2 className="text-2xl font-bold text-blue-700">
+                  New & Trending Templates
+                </h2>
+              </div>
+              <p className="text-gray-600 text-base mb-2">
+                Discover our latest and most popular document templates.
+                <br />
+                Updated weekly for professionals, students, and businesses.
+              </p>
+              <ul className="text-gray-500 text-sm list-disc pl-5 space-y-1">
+                <li>Always free to use</li>
+                <li>No login required</li>
+                <li>Download as PDF or copy instantly</li>
+              </ul>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {featuredNewTemplates.map((t, i) => (
-                <motion.div
-                  key={t.id}
-                  initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
-                  animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                  transition={{
-                    duration: 0.7,
-                    delay: 0.15 + i * 0.09,
-                    ease: "easeOut",
-                  }}
-                >
-                  <Link
-                    href={`/templates/${t.id}`}
-                    className="group aspect-square flex flex-col items-center justify-center bg-white border border-gray-100 rounded-2xl shadow hover:shadow-xl transition-all hover:-translate-y-1 px-4 py-6 cursor-pointer"
-                    style={{ minHeight: 0, minWidth: 0 }}
+            <div className="flex-[2] w-full">
+              <div className="grid grid-cols-2 gap-4">
+                {featuredNewTemplates.map((t, i) => (
+                  <motion.div
+                    key={t.id}
+                    initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
+                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                    transition={{
+                      duration: 0.7,
+                      delay: 0.15 + i * 0.09,
+                      ease: "easeOut",
+                    }}
+                    className="aspect-square w-44 md:w-56 flex"
                   >
-                    <div className="flex items-center gap-2 mb-2">
-                      <FiFileText className="text-blue-500 text-xl" />
-                      <span className="bg-green-50 text-green-700 text-xs font-semibold px-2 py-1 rounded-full">
-                        NEW
+                    <Link
+                      href={`/templates/${t.id}`}
+                      className="group flex flex-col items-center justify-center bg-white border border-gray-100 rounded-xl shadow hover:shadow-xl transition-all hover:-translate-y-1 px-3 py-4 w-full h-full"
+                      style={{ minHeight: 0, minWidth: 0 }}
+                    >
+                      <div className="flex items-center gap-2 mb-1">
+                        <FiFileText className="text-blue-500 text-lg" />
+                        <span className="bg-green-50 text-green-700 text-xs font-semibold px-2 py-1 rounded-full">
+                          NEW
+                        </span>
+                      </div>
+                      <div className="font-semibold text-gray-900 text-center text-sm leading-tight mb-1 group-hover:text-blue-600 transition">
+                        {t.title}
+                      </div>
+                      <div className="text-gray-500 text-xs text-center mb-2">
+                        {t.description}
+                      </div>
+                      <span className="mt-auto text-blue-500 text-xs group-hover:underline flex items-center gap-1 font-medium">
+                        Try now <FiArrowRight className="inline" />
                       </span>
-                    </div>
-                    <div className="font-semibold text-gray-900 text-center text-base leading-tight mb-1 group-hover:text-blue-600 transition">
-                      {t.title}
-                    </div>
-                    <div className="text-gray-500 text-xs text-center mb-3">
-                      {t.description}
-                    </div>
-                    <span className="mt-auto text-blue-500 text-xs group-hover:underline flex items-center gap-1 font-medium">
-                      Try now <FiArrowRight className="inline" />
-                    </span>
-                  </Link>
-                </motion.div>
-              ))}
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </motion.div>
         </motion.section>
