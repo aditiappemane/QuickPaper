@@ -1,21 +1,21 @@
 "use client";
 import { useState, useMemo } from "react";
 import Header from "@/components/Header";
-// import Footer from "@/components/Footer";
 import SearchBar from "@/components/SearchBar";
 import TemplateCard from "@/components/TemplateCard";
 import Template from "@/app/Template";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiGrid, FiList } from "react-icons/fi";
+import { FiGrid, FiList, FiFilter } from "react-icons/fi";
 import NoResultsFound from "@/components/NoResultsFound";
 import { templates } from "@/app/templates";
 
-const categories = ["All", "Student", "Work", "Finance"];
+const categories = ["All", "Student", "Work", "Finance", "Legal", "Personal"];
 
 export default function TemplatesPage() {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [showFilters, setShowFilters] = useState(false);
 
   const filtered = useMemo(() => {
     let result = templates;
@@ -37,23 +37,23 @@ export default function TemplatesPage() {
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-white via-slate-50 to-blue-50">
       <Header />
       <Template>
-        <main className="flex-1 py-16">
-          <div className="max-w-7xl mx-auto px-6">
-            {/* Hero/Header */}
+        <main className="flex-1 py-12 md:py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Hero Section */}
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.6, type: "spring" }}
-              className="text-center mb-14"
+              className="text-center mb-12"
             >
-              <h1 className="text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
+              <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
                 Find Your Perfect Template
               </h1>
-              <p className="text-xl text-gray-600 mb-6">
+              <p className="text-xl text-gray-600 mb-6 max-w-3xl mx-auto">
                 {templates.length}+ modern, ready-to-use documents—search,
                 filter, and create in seconds.
               </p>
-              <div className="inline-flex items-center px-4 py-2 bg-green-50 text-green-700 rounded-full text-sm font-medium shadow-sm">
+              <div className="inline-flex items-center px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-medium shadow-sm">
                 ✨ New templates every week
               </div>
             </motion.div>
@@ -63,71 +63,116 @@ export default function TemplatesPage() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.5 }}
-              className="bg-white rounded-2xl shadow border border-gray-100 p-8 mb-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6"
+              className="mb-10"
             >
-              {/* SearchBar */}
-              <div className="flex-1 w-full md:max-w-md">
-                <SearchBar value={search} onChange={setSearch} />
-              </div>
+              <div className="flex flex-col md:flex-row gap-4 items-start md:items-center">
+                {/* SearchBar */}
+                <div className="flex-1 w-full">
+                  <SearchBar value={search} onChange={setSearch} />
+                </div>
 
-              {/* Category Pills */}
-              <div className="flex flex-wrap gap-2 items-center">
-                {categories.map((cat) => (
+                {/* Mobile Filters Button */}
+                <button
+                  onClick={() => setShowFilters(!showFilters)}
+                  className="md:hidden flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg text-gray-700 font-medium"
+                >
+                  <FiFilter size={18} />
+                  Filters
+                </button>
+
+                {/* View Toggle */}
+                <div className="flex items-center gap-1 bg-gray-100 rounded-full p-1">
                   <button
-                    key={cat}
-                    onClick={() => setSelectedCategory(cat)}
-                    className={`px-4 py-2 rounded-full font-medium text-sm transition-all border
-                      ${
-                        selectedCategory === cat
-                          ? "bg-blue-600 text-white border-blue-600 shadow"
-                          : "bg-gray-100 text-gray-700 border-gray-200 hover:bg-blue-50 hover:border-blue-400"
-                      }
-                    `}
+                    onClick={() => setViewMode("grid")}
+                    className={`p-2 rounded-full transition-all ${
+                      viewMode === "grid"
+                        ? "bg-blue-600 text-white shadow"
+                        : "text-gray-500 hover:text-blue-700"
+                    }`}
+                    aria-label="Grid view"
                   >
-                    {cat}
+                    <FiGrid size={18} />
                   </button>
-                ))}
+                  <button
+                    onClick={() => setViewMode("list")}
+                    className={`p-2 rounded-full transition-all ${
+                      viewMode === "list"
+                        ? "bg-blue-600 text-white shadow"
+                        : "text-gray-500 hover:text-blue-700"
+                    }`}
+                    aria-label="List view"
+                  >
+                    <FiList size={18} />
+                  </button>
+                </div>
               </div>
 
-              {/* View Toggle */}
-              <div className="flex items-center gap-2 bg-gray-100 rounded-full p-1">
-                <button
-                  onClick={() => setViewMode("grid")}
-                  className={`p-2 rounded-full transition-all ${
-                    viewMode === "grid"
-                      ? "bg-blue-600 text-white shadow"
-                      : "text-gray-500 hover:text-blue-700"
-                  }`}
-                  aria-label="Grid view"
-                >
-                  <FiGrid size={18} />
-                </button>
-                <button
-                  onClick={() => setViewMode("list")}
-                  className={`p-2 rounded-full transition-all ${
-                    viewMode === "list"
-                      ? "bg-blue-600 text-white shadow"
-                      : "text-gray-500 hover:text-blue-700"
-                  }`}
-                  aria-label="List view"
-                >
-                  <FiList size={18} />
-                </button>
-              </div>
+              {/* Category Filters */}
+              <AnimatePresence>
+                {(showFilters || !showFilters) && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className={`mt-4 overflow-hidden ${
+                      showFilters ? "block" : "hidden md:block"
+                    }`}
+                  >
+                    <div className="flex flex-wrap gap-2">
+                      {categories.map((cat) => (
+                        <button
+                          key={cat}
+                          onClick={() => setSelectedCategory(cat)}
+                          className={`px-4 py-2 rounded-full font-medium text-sm transition-all border
+                            ${
+                              selectedCategory === cat
+                                ? "bg-blue-600 text-white border-blue-600 shadow"
+                                : "bg-white text-gray-700 border-gray-200 hover:bg-blue-50 hover:border-blue-400"
+                            }
+                          `}
+                        >
+                          {cat}
+                        </button>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+
+            {/* Results Count */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="mb-6 flex justify-between items-center"
+            >
+              <p className="text-gray-600">
+                Showing <span className="font-semibold">{filtered.length}</span>{" "}
+                {filtered.length === 1 ? "template" : "templates"}
+              </p>
             </motion.div>
 
             {/* Results Section */}
-            <AnimatePresence>
+            <AnimatePresence mode="wait">
               {filtered.length === 0 ? (
-                <NoResultsFound searchTerm={search} />
-              ) : (
                 <motion.div
-                  key={viewMode + selectedCategory + search}
+                  key="no-results"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
+                >
+                  <NoResultsFound searchTerm={search} />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key={`${viewMode}-${selectedCategory}-${search}`}
+                  initial={{ opacity: 0, filter: "blur(8px)" }}
+                  animate={{ opacity: 1, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, filter: "blur(8px)" }}
                   transition={{ duration: 0.4 }}
-                  className={`grid gap-8 ${
+                  className={`grid gap-6 ${
                     viewMode === "grid"
                       ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
                       : "grid-cols-1"
@@ -149,7 +194,6 @@ export default function TemplatesPage() {
           </div>
         </main>
       </Template>
-      {/* <Footer /> */}
     </div>
   );
 }
