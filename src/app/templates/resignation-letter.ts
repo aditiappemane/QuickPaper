@@ -3,13 +3,14 @@ import { Template } from "./types";
 const resignationLetter: Template = {
   id: "resignation-letter",
   title: "Resignation Letter",
-  description: "Resign professionally from your position",
+  description: "Resign gracefully and professionally",
   category: "Work",
   popularity: 90,
   isNew: false,
-  glimpse: "Professional resignation notice with proper notice period",
+  glimpse: "Professional resignation notice with proper notice period.",
   fields: [
     { name: "employeeName", label: "Your Name", type: "text" },
+    { name: "managerName", label: "Manager's Name", type: "text" },
     { name: "position", label: "Your Position", type: "text" },
     { name: "company", label: "Company Name", type: "text" },
     { name: "lastWorkingDay", label: "Last Working Day", type: "date" },
@@ -22,9 +23,9 @@ const resignationLetter: Template = {
 [Phone Number]
 [Date]
 
-[Manager's Name]
+{{managerName}}
 [Manager's Position]
-[Company Name]
+{{company}}
 [Company Address]
 [City, State, Zip Code]
 
