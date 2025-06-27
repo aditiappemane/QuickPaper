@@ -1,7 +1,11 @@
+"use client";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 
 export default function Header() {
+  const [open, setOpen] = useState(false);
+
   return (
     <motion.header
       initial={{ y: -24, opacity: 0 }}
@@ -19,7 +23,8 @@ export default function Header() {
           </span>
           QuickPaper
         </Link>
-        <nav className="flex items-center gap-6">
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-6">
           <Link
             href="/"
             className="text-neutral-700 hover:text-blue-600 transition-colors font-medium"
@@ -45,7 +50,69 @@ export default function Header() {
             Request Template
           </Link>
         </nav>
+        {/* Hamburger */}
+        <button
+          className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg hover:bg-neutral-100 transition"
+          onClick={() => setOpen((v) => !v)}
+          aria-label="Open menu"
+        >
+          <span
+            className={`block w-6 h-0.5 bg-neutral-700 rounded transition-all duration-200 ${
+              open ? "rotate-45 translate-y-1.5" : ""
+            }`}
+          />
+          <span
+            className={`block w-6 h-0.5 bg-neutral-700 rounded my-1 transition-all duration-200 ${
+              open ? "opacity-0" : ""
+            }`}
+          />
+          <span
+            className={`block w-6 h-0.5 bg-neutral-700 rounded transition-all duration-200 ${
+              open ? "-rotate-45 -translate-y-1.5" : ""
+            }`}
+          />
+        </button>
       </div>
+      <AnimatePresence>
+        {open && (
+          <motion.nav
+            initial={{ opacity: 0, y: -24, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            exit={{ opacity: 0, y: -24, filter: "blur(10px)" }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="md:hidden bg-white/95 backdrop-blur border-t border-neutral-100 shadow-lg px-6 py-4 flex flex-col gap-4"
+          >
+            <Link
+              href="/"
+              className="text-neutral-700 hover:text-blue-600 font-medium py-1"
+              onClick={() => setOpen(false)}
+            >
+              Home
+            </Link>
+            <Link
+              href="/templates"
+              className="text-neutral-700 hover:text-blue-600 font-medium py-1"
+              onClick={() => setOpen(false)}
+            >
+              Templates
+            </Link>
+            <Link
+              href="/about"
+              className="text-neutral-700 hover:text-blue-600 font-medium py-1"
+              onClick={() => setOpen(false)}
+            >
+              About
+            </Link>
+            <Link
+              href="/request-template"
+              className="text-blue-600 font-semibold hover:underline py-1"
+              onClick={() => setOpen(false)}
+            >
+              Request Template
+            </Link>
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }
