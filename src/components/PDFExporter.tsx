@@ -36,6 +36,7 @@ export default function PDFExporter({
     contentClone.style.fontFamily = "sans-serif";
     contentClone.style.fontSize = "12pt";
     contentClone.style.lineHeight = "1.6";
+    contentClone.style.background = "white";
 
     tempContainer.appendChild(contentClone);
     document.body.appendChild(tempContainer);
@@ -58,7 +59,10 @@ export default function PDFExporter({
       .from(contentClone);
 
     pdfGenerator.save();
-    document.body.removeChild(tempContainer);
+
+    setTimeout(() => {
+      document.body.removeChild(tempContainer);
+    }, 1000);
   }
 
   return (
@@ -76,14 +80,17 @@ export default function PDFExporter({
 
       <div
         ref={previewRef}
-        className="hidden"
         style={{
+          position: "absolute",
+          left: "-9999px",
+          top: "0",
           whiteSpace: "pre-line",
           fontFamily: "sans-serif",
           fontSize: "12pt",
           lineHeight: "1.6",
           padding: "0",
           margin: "0",
+          background: "white",
         }}
       >
         {content}
