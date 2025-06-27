@@ -48,24 +48,60 @@ export default function FormRenderer({
           </label>
           {field.type === "textarea" ? (
             <textarea
-              ref={(el) => (fieldRefs.current[idx] = el)}
+              ref={(el) => {
+                fieldRefs.current[idx] = el;
+              }}
               value={values[field.name] || ""}
               onChange={(e) =>
                 onChange({ ...values, [field.name]: e.target.value })
               }
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="
+                w-full
+                border-2
+                border-gray-200
+                rounded-2xl
+                px-4
+                py-3
+                focus:border-blue-500
+                focus:outline-none
+                transition
+                duration-150
+                ease-in-out
+                text-lg
+                placeholder-gray-400
+                bg-white
+                box-border
+              "
               rows={4}
               placeholder={`Enter ${field.label.toLowerCase()}`}
               onFocus={() => setActiveIndex(idx)}
             />
           ) : field.type === "select" ? (
             <select
-              ref={(el) => (fieldRefs.current[idx] = el)}
+              ref={(el) => {
+                fieldRefs.current[idx] = el;
+              }}
               value={values[field.name] || ""}
               onChange={(e) =>
                 onChange({ ...values, [field.name]: e.target.value })
               }
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="
+                w-full
+                border-2
+                border-gray-200
+                rounded-2xl
+                px-4
+                py-3
+                focus:border-blue-500
+                focus:outline-none
+                transition
+                duration-150
+                ease-in-out
+                text-lg
+                placeholder-gray-400
+                bg-white
+                box-border
+              "
               onFocus={() => setActiveIndex(idx)}
             >
               <option value="">Select {field.label}</option>
@@ -77,13 +113,31 @@ export default function FormRenderer({
             </select>
           ) : (
             <input
-              ref={(el) => (fieldRefs.current[idx] = el)}
+              ref={(el) => {
+                fieldRefs.current[idx] = el;
+              }}
               type={field.type}
               value={values[field.name] || ""}
               onChange={(e) =>
                 onChange({ ...values, [field.name]: e.target.value })
               }
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="
+                w-full
+                border-2
+                border-gray-200
+                rounded-2xl
+                px-4
+                py-3
+                focus:border-blue-500
+                focus:outline-none
+                transition
+                duration-150
+                ease-in-out
+                text-lg
+                placeholder-gray-400
+                bg-white
+                box-border
+              "
               placeholder={`Enter ${field.label.toLowerCase()}`}
               onFocus={() => setActiveIndex(idx)}
             />
