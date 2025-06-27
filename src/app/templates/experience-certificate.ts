@@ -15,6 +15,8 @@ const experienceCertificate: Template = {
     { name: "employeeId", label: "Employee ID", type: "text" },
     { name: "designation", label: "Designation", type: "text" },
     { name: "organization", label: "Organization Name", type: "text" },
+    { name: "orgAddress", label: "Organization Address", type: "text" },
+    { name: "recipient", label: "Recipient (optional)", type: "text" },
     { name: "joiningDate", label: "Joining Date", type: "date" },
     { name: "relievingDate", label: "Relieving Date", type: "date" },
     { name: "remarks", label: "Remarks (optional)", type: "textarea" },
@@ -23,17 +25,20 @@ const experienceCertificate: Template = {
     { name: "date", label: "Date of Issue", type: "date" },
   ],
   template: `
-[Company Letterhead]
+{{organization}}
+{{orgAddress}}
 
 Date: {{date}}
+
+{{recipient ? ("To, " + recipient + "\\n") : ""}
 
 To Whom It May Concern,
 
 This is to certify that Mr./Ms. {{employeeName}} (Employee ID: {{employeeId}}) was employed with {{organization}} as a {{designation}} from {{joiningDate}} to {{relievingDate}}.
 
-During their tenure, {{employeeName}} performed their duties diligently and maintained good conduct. {{remarks}}
+During their tenure, {{employeeName}} performed their duties diligently and maintained good conduct.{{remarks ? " " + remarks : ""}}
 
-We wish them all the best in their future endeavors.
+We wish {{employeeName}} all the best in their future endeavors.
 
 Sincerely,
 {{issuerName}}
