@@ -142,24 +142,23 @@ export default function HomePage() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="w-full max-w-6xl bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl shadow-xl p-8 mb-20"
+          className="w-full max-w-4xl bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl shadow-lg p-4 mb-12"
         >
-          <div className="flex flex-col md:flex-row gap-10">
+          <div className="flex flex-col md:flex-row gap-6">
             <div className="flex-1">
-              <div className="flex items-center gap-3 mb-6">
-                <FiEdit className="text-blue-600 text-2xl" />
-                <h2 className="text-2xl font-bold text-gray-900">
+              <div className="flex items-center gap-2 mb-3">
+                <FiEdit className="text-blue-600 text-xl" />
+                <h2 className="text-lg font-bold text-gray-900">
                   Live Preview Demo
                 </h2>
               </div>
-              <p className="text-gray-600 mb-8">
-                See how QuickPaper works. Fill in the details and watch your
-                document update in real-time.
+              <p className="text-gray-600 mb-4 text-sm">
+                Fill in the details and watch your document update in real-time.
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {Object.entries(livePreviewValues).map(([key, value]) => (
                   <div key={key}>
-                    <label className="block text-sm font-medium text-gray-700 mb-1 capitalize">
+                    <label className="block text-xs font-medium text-gray-700 mb-1 capitalize">
                       {key.replace(/([A-Z])/g, " $1")}
                     </label>
                     <input
@@ -171,21 +170,21 @@ export default function HomePage() {
                           [key]: e.target.value,
                         }))
                       }
-                      className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-blue-500 focus:outline-none transition text-lg bg-white"
+                      className="w-full border border-gray-200 rounded-lg px-3 py-2 focus:border-blue-500 focus:outline-none transition text-sm bg-white"
                     />
                   </div>
                 ))}
               </div>
             </div>
             <div className="flex-1">
-              <div className="flex items-center gap-3 mb-6">
-                <FiEye className="text-purple-600 text-2xl" />
-                <h2 className="text-2xl font-bold text-gray-900">
+              <div className="flex items-center gap-2 mb-3">
+                <FiEye className="text-purple-600 text-xl" />
+                <h2 className="text-lg font-bold text-gray-900">
                   Generated Document
                 </h2>
               </div>
-              <div className="bg-white border border-gray-200 rounded-xl shadow p-6 h-full">
-                <pre className="whitespace-pre-wrap font-sans text-gray-800">
+              <div className="bg-white border border-gray-200 rounded-lg shadow p-4 h-full">
+                <pre className="whitespace-pre-wrap font-sans text-gray-800 text-sm">
                   {filledTemplate}
                 </pre>
               </div>

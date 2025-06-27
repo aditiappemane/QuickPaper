@@ -34,3 +34,20 @@ body {
   background: transparent;
   pointer-events: none;
 }
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+.blinking-cursor {
+  display: inline-block;
+  width: 1ch;
+  background: transparent;
+  color: #6366f1;
+  font-weight: bold;
+  animation: blink 1s steps(1) infinite;
+}
