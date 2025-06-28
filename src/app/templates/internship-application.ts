@@ -22,38 +22,42 @@ const internshipApplication: Template = {
     { name: "objective", label: "Objective / Motivation", type: "textarea" },
   ],
   template: `
-{{applicantName}}
-{{address}}
-Email: {{email}}
-Phone: {{phone}}
+<p>{{applicantName}}<br/>
+{{address}}<br/>
+Email: {{email}}<br/>
+Phone: {{phone}}</p>
 
-Date: {{date}}
+<p>Date: {{date}}</p>
 
-To,
-The HR Manager
-{{company}}
-{{companyAddress}}
+<p>To,<br/>
+The HR Manager<br/>
+{{company}}<br/>
+{{companyAddress}}</p>
 
-Subject: Application for Internship Position ({{position}})
+<p><strong>Subject:</strong> Application for Internship Position ({{position}})</p>
 
-Respected Sir/Madam,
+<p>Respected Sir/Madam,</p>
 
+<p>
 I am writing to express my keen interest in the {{position}} internship at {{company}} for a duration of {{duration}}.
+</p>
 
-Objective:
-{{objective}}
+<p><strong>Objective:</strong><br/>
+{{objective}}</p>
 
-Relevant Skills/Experience:
-{{skills}}
+<p><strong>Relevant Skills/Experience:</strong><br/>
+{{skills}}</p>
 
+<p>
 I believe this opportunity will help me enhance my skills and contribute meaningfully to your organization. I am attaching my resume for your reference.
+</p>
 
-Thank you for considering my application. I look forward to your positive response.
+<p>Thank you for considering my application. I look forward to your positive response.</p>
 
-Sincerely,
-{{applicantName}}
-Email: {{email}}
-Phone: {{phone}}
+<p>Sincerely,<br/>
+{{applicantName}}<br/>
+Email: {{email}}<br/>
+Phone: {{phone}}</p>
 `,
 };
 
