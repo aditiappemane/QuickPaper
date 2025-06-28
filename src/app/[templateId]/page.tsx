@@ -132,13 +132,12 @@ export default function TemplatePage() {
                 </button>
                 <CopyTextButton textToCopy={filled.replace(/<[^>]+>/g, "")} />
                 <PDFExporter
-                  content={filled.replace(/<[^>]+>/g, "")}
+                  content={filled}
                   fileName={`${templateData.title}.pdf`}
                 />
               </motion.div>
             </motion.div>
 
-            {/* Live Preview */}
             <div className="sticky top-24 w-full max-w-xl mx-auto">
               <div className="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
                 <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-gradient-to-r from-blue-50/80 via-white/80 to-slate-50/80">

@@ -1,5 +1,4 @@
 "use client";
-import { useRef } from "react";
 import { FiDownload } from "react-icons/fi";
 import { motion } from "framer-motion";
 import html2pdf from "html2pdf.js";
@@ -11,44 +10,28 @@ export default function PDFExporter({
   content: string;
   fileName?: string;
 }) {
-  const previewRef = useRef<HTMLDivElement>(null);
-
   function handleDownload() {
-    if (!previewRef.current) return;
-
     const tempContainer = document.createElement("div");
-    tempContainer.style.position = "fixed";
-    tempContainer.style.top = "0";
-    tempContainer.style.left = "0";
-    tempContainer.style.width = "100%";
-    tempContainer.style.height = "100%";
-    tempContainer.style.opacity = "0";
-    tempContainer.style.pointerEvents = "none";
-    tempContainer.style.zIndex = "-1000";
+    tempContainer.innerHTML = content;
 
-    const contentClone = previewRef.current.cloneNode(true) as HTMLDivElement;
-    contentClone.style.display = "block";
-    contentClone.style.visibility = "visible";
-    contentClone.style.position = "absolute";
-    contentClone.style.width = "210mm";
-    contentClone.style.minHeight = "297mm";
-    contentClone.style.padding = "20mm";
-    contentClone.style.fontFamily = "sans-serif";
-    contentClone.style.fontSize = "12pt";
-    contentClone.style.lineHeight = "1.6";
-    contentClone.style.background = "white";
+    tempContainer.style.width = "210mm";
+    tempContainer.style.minHeight = "297mm";
+    tempContainer.style.padding = "20mm";
+    tempContainer.style.fontFamily = "sans-serif";
+    tempContainer.style.fontSize = "12pt";
+    tempContainer.style.lineHeight = "1.6";
+    tempContainer.style.background = "white";
+    tempContainer.style.color = "#000";
 
-    tempContainer.appendChild(contentClone);
     document.body.appendChild(tempContainer);
 
-    const pdfGenerator = html2pdf()
+    html2pdf()
       .set({
         margin: 0,
         filename: fileName,
         html2canvas: {
           scale: 2,
           useCORS: true,
-          logging: false,
         },
         jsPDF: {
           unit: "mm",
@@ -56,9 +39,8 @@ export default function PDFExporter({
           orientation: "portrait",
         },
       })
-      .from(contentClone);
-
-    pdfGenerator.save();
+      .from(tempContainer)
+      .save();
 
     setTimeout(() => {
       document.body.removeChild(tempContainer);
@@ -77,24 +59,6 @@ export default function PDFExporter({
         <FiDownload size={18} />
         Download PDF
       </motion.button>
-
-      <div
-        ref={previewRef}
-        style={{
-          position: "absolute",
-          left: "-9999px",
-          top: "0",
-          whiteSpace: "pre-line",
-          fontFamily: "sans-serif",
-          fontSize: "12pt",
-          lineHeight: "1.6",
-          padding: "0",
-          margin: "0",
-          background: "white",
-        }}
-      >
-        {content}
-      </div>
     </div>
   );
 }
