@@ -29,33 +29,44 @@ const resignationLetter: Template = {
     { name: "reason", label: "Reason for Resignation", type: "textarea" },
   ],
   template: `
-[{{yourName}}]
-[{{yourAddress}}]
-[{{cityStateZip}}]
-[{{email}}]
-[{{phone}}]
-[{{date}}]
+<p>{{yourName}}<br/>
+{{yourAddress}}<br/>
+{{cityStateZip}}<br/>
+{{email}}<br/>
+{{phone}}</p>
 
-{{managerName}}
-[{{managerPosition}}]
-{{company}}
-[{{companyAddress}}]
-[{{companyCityStateZip}}]
+<p>Date: {{date}}</p>
 
-Dear {{managerName}},
+<p>{{managerName}}<br/>
+{{managerPosition}}<br/>
+{{company}}<br/>
+{{companyAddress}}<br/>
+{{companyCityStateZip}}</p>
 
+<p>Dear {{managerName}},</p>
+
+<p>
 Please accept this letter as formal notification that I am resigning from my position as {{position}} at {{company}}. My last day of employment will be {{lastWorkingDay}}.
+</p>
 
+<p>
 {{reason}}
+</p>
 
+<p>
 I would like to express my gratitude for the opportunities I've had during my time at {{company}}. I've learned a great deal and appreciate the support I've received.
+</p>
 
+<p>
 Please let me know how I can assist during this transition period. I'm committed to ensuring a smooth handover of my responsibilities.
+</p>
 
+<p>
 Thank you for your understanding.
+</p>
 
-Sincerely,
-{{yourName}}
+<p>Sincerely,<br/>
+{{yourName}}</p>
 `,
 };
 
