@@ -44,33 +44,39 @@ const professionalLeaveApplication: Template = {
     { name: "date", label: "Date of Application", type: "date" },
   ],
   template: `
-{{employeeName}}
-Employee ID: {{employeeId}}
-{{designation}}, {{department}}
-{{company}}
-{{companyAddress}}
+<p>{{employeeName}}<br/>
+Employee ID: {{employeeId}}<br/>
+{{designation}}, {{department}}<br/>
+{{company}}<br/>
+{{companyAddress}}</p>
 
-Date: {{date}}
+<p>Date: {{date}}</p>
 
-To,
-{{managerName}}
-{{designation}}
-{{company}}
+<p>To,<br/>
+{{managerName}}<br/>
+{{designation}}<br/>
+{{company}}</p>
 
-Subject: Application for {{leaveType}} Leave
+<p><strong>Subject:</strong> Application for {{leaveType}} Leave</p>
 
-Dear {{managerName}},
+<p>Dear {{managerName}},</p>
 
+<p>
 I am writing to formally request a {{leaveType}} leave of absence from {{startDate}} to {{endDate}} due to {{reason}}.
+</p>
 
+<p>
 During my absence, I have arranged for {{handoverDetails}} to ensure that my responsibilities are managed without disruption. Should you require any urgent assistance, I will be reachable at my email or phone.
+</p>
 
+<p>
 I kindly request you to grant me leave for the mentioned period. I appreciate your understanding and support.
+</p>
 
-Thank you for your consideration.
+<p>Thank you for your consideration.</p>
 
-Sincerely,
-{{employeeName}}
+<p>Sincerely,<br/>
+{{employeeName}}</p>
 `,
 };
 
