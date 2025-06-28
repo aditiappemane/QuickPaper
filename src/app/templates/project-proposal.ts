@@ -34,34 +34,38 @@ const projectProposal: Template = {
     { name: "contact", label: "Contact Information", type: "text" },
   ],
   template: `
-To,
-{{recipient}}
-{{department}}, {{organization}}
+<p>To,<br/>
+{{recipient}}<br/>
+{{department}}, {{organization}}</p>
 
-Date: {{date}}
+<p>Date: {{date}}</p>
 
-Subject: Project Proposal – {{projectTitle}}
+<p><strong>Subject:</strong> Project Proposal – {{projectTitle}}</p>
 
-Respected Sir/Madam,
+<p>Respected Sir/Madam,</p>
 
-I, {{proposerName}} ({{proposerDesignation}}), from the {{department}}, am pleased to submit the proposal for the project titled "{{projectTitle}}". The following team members will be involved: {{teamMembers}}.
+<p>
+I, {{proposerName}} ({{proposerDesignation}}), from the {{department}}, am pleased to submit the proposal for the project titled "<strong>{{projectTitle}}</strong>". The following team members will be involved: {{teamMembers}}.
+</p>
 
-Project Objective:
-{{objective}}
+<p><strong>Project Objective:</strong><br/>
+{{objective}}</p>
 
-Project Scope:
-{{scope}}
+<p><strong>Project Scope:</strong><br/>
+{{scope}}</p>
 
-Proposed Timeline: {{timeline}}
-Estimated Budget: ₹{{budget}}
+<p><strong>Proposed Timeline:</strong> {{timeline}}<br/>
+<strong>Estimated Budget:</strong> ₹{{budget}}</p>
 
+<p>
 We believe this project will significantly benefit {{organization}} and align with our strategic goals. Kindly review the proposal and let us know if further details are required.
+</p>
 
-Thank you for your consideration.
+<p>Thank you for your consideration.</p>
 
-Sincerely,
-{{proposerName}}
-Contact: {{contact}}
+<p>Sincerely,<br/>
+{{proposerName}}<br/>
+Contact: {{contact}}</p>
 `,
 };
 
