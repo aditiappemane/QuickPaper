@@ -20,7 +20,7 @@ function fillTemplate(
   return template.replace(/{{(\w+)}}/g, (_, key) => {
     const value = values[key]?.trim();
     const field = fields.find((f) => f.name === key);
-    if (value) return value;
+    if (value) return value.replace(/\n/g, "<br/>");
     return field
       ? `<span class="placeholder-in-preview">${field.label}</span>`
       : `<span class="placeholder-in-preview">&nbsp;</span>`;
@@ -56,20 +56,24 @@ export default function TemplatePage() {
   const previewLength = 300;
   const isLong = filled.replace(/<[^>]+>/g, "").length > previewLength;
 
-  function getPreview(html: string) {
-    const text = html.replace(/<[^>]+>/g, "");
-    if (text.length <= previewLength) return html;
+  function getPreview() {
+    const text = filled.replace(/<[^>]+>/g, "");
+    if (text.length <= previewLength) return filled;
     let count = 0,
       i = 0;
-    for (; i < html.length && count < previewLength; i++) {
-      if (html[i] === "<") {
-        while (i < html.length && html[i] !== ">") i++;
+    for (; i < filled.length && count < previewLength; i++) {
+      if (filled[i] === "<") {
+        while (filled[i] !== ">" && i < filled.length) i++;
       } else {
         count++;
       }
     }
-    return html.slice(0, i) + "...";
+    return filled.slice(0, i) + "...";
   }
+
+  const allFieldsFilled = templateData.fields.every(
+    (f) => values[f.name]?.trim() !== ""
+  );
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-white via-slate-50 to-blue-50">
@@ -132,9 +136,9 @@ export default function TemplatePage() {
                 </button>
                 <CopyTextButton textToCopy={filled.replace(/<[^>]+>/g, "")} />
                 <PDFExporter
-                  content={filled}
+                  htmlContent={filled}
                   fileName={`${templateData.title}.pdf`}
-                  disabled={Object.values(values).some((v) => !v.trim())}
+                  disabled={!allFieldsFilled}
                 />
               </motion.div>
             </motion.div>
@@ -174,7 +178,7 @@ export default function TemplatePage() {
                     {filled ? (
                       <div
                         dangerouslySetInnerHTML={{
-                          __html: showFullPreview ? filled : getPreview(filled),
+                          __html: showFullPreview ? filled : getPreview(),
                         }}
                       />
                     ) : (
