@@ -33,34 +33,34 @@ const warningLetter: Template = {
     { name: "issuerDesignation", label: "Issuer's Designation", type: "text" },
   ],
   template: `
-{{organization}}
-{{orgAddress}}
+<p>{{organization}}<br/>
+{{orgAddress}}</p>
 
-Date: {{date}}
+<p>Date: {{date}}</p>
 
-To,
-{{recipientName}}
-{{designationOrClass}}
-ID: {{recipientId}}
-{{recipientAddress}}
+<p>To,<br/>
+{{recipientName}}<br/>
+{{designationOrClass}}<br/>
+ID: {{recipientId}}<br/>
+{{recipientAddress}}</p>
 
-Subject: Warning Letter
+<p><strong>Subject:</strong> Warning Letter</p>
 
-Dear {{recipientName}},
+<p>Dear {{recipientName}},</p>
 
-This letter serves as a formal warning regarding the following matter:
+<p>This letter serves as a formal warning regarding the following matter:</p>
 
-Offense: {{offense}}
-Date of Incident: {{incidentDate}}
+<p><strong>Offense:</strong> {{offense}}<br/>
+<strong>Date of Incident:</strong> {{incidentDate}}</p>
 
-Such conduct is a violation of our policies and is viewed very seriously. You are hereby advised to refrain from repeating this behavior in the future. If such an incident occurs again, {{consequences}}
+<p>Such conduct is a violation of our policies and is viewed very seriously. You are hereby advised to refrain from repeating this behavior in the future. If such an incident occurs again, {{consequences}}</p>
 
-Please treat this as an official warning and take corrective action immediately.
+<p>Please treat this as an official warning and take corrective action immediately.</p>
 
-Sincerely,
-{{issuerName}}
-{{issuerDesignation}}
-{{organization}}
+<p>Sincerely,<br/>
+{{issuerName}}<br/>
+{{issuerDesignation}}<br/>
+{{organization}}</p>
 `,
 };
 
