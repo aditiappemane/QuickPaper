@@ -58,34 +58,36 @@ const apologyLetter: Template = {
     { name: "subject", label: "Subject (optional)", type: "text" },
   ],
   template: `
-{{senderName}}
-{{senderAddress}}
-{{senderCityStateZip}}
-{{senderEmail}}
-{{senderPhone}}
-{{date}}
+<p>{{senderName}}<br/>
+{{senderAddress}}<br/>
+{{senderCityStateZip}}<br/>
+{{senderEmail}}<br/>
+{{senderPhone}}</p>
 
-{{recipientName}}
-{{recipientPosition}}
-{{recipientCompany}}
-{{recipientAddress}}
-{{recipientCityStateZip}}
+<p>Date: {{date}}</p>
 
-Subject: {{subject || ("Apology for " + incident)}}
+<p>{{recipientName}}<br/>
+{{recipientPosition}}<br/>
+{{recipientCompany}}<br/>
+{{recipientAddress}}<br/>
+{{recipientCityStateZip}}</p>
 
-Dear {{recipientName}},
+<p><strong>Subject:</strong> {{subject || ("Apology for " + incident)}}</p>
 
-I am writing to sincerely apologize for {{incident}}. As your {{relationship}}, I understand that my actions may have caused {{impact}}.
+<p>Dear {{recipientName}},</p>
 
-I take full responsibility for my mistake, and I want to assure you that I am already taking steps to address the issue:
-{{resolution}}
+<p>I am writing to sincerely apologize for {{incident}}. As your {{relationship}}, I understand that my actions may have caused {{impact}}.</p>
 
-Please accept my heartfelt apologies. I value our relationship and will do my best to make sure this does not happen again. {{promise}}
+<p>I take full responsibility for my mistake, and I want to assure you that I am already taking steps to address the issue:</p>
 
-Thank you for your understanding and patience.
+<p>{{resolution}}</p>
 
-Sincerely,
-{{senderName}}
+<p>Please accept my heartfelt apologies. I value our relationship and will do my best to make sure this does not happen again. {{promise}}</p>
+
+<p>Thank you for your understanding and patience.</p>
+
+<p>Sincerely,<br/>
+{{senderName}}</p>
 `,
 };
 
