@@ -33,32 +33,34 @@ const simpleResignationLetter: Template = {
     },
   ],
   template: `
-{{employeeName}}
-{{employeeAddress}}
-Email: {{employeeEmail}}
-Phone: {{employeePhone}}
+<p>{{employeeName}}<br/>
+{{employeeAddress}}<br/>
+Email: {{employeeEmail}}<br/>
+Phone: {{employeePhone}}</p>
 
-Date: {{date}}
+<p>Date: {{date}}</p>
 
-To,
-{{managerName}}
-{{company}}
-{{companyAddress}}
+<p>To,<br/>
+{{managerName}}<br/>
+{{company}}<br/>
+{{companyAddress}}</p>
 
-Subject: Resignation Letter
+<p><strong>Subject:</strong> Resignation Letter</p>
 
-Dear {{managerName}},
+<p>Dear {{managerName}},</p>
 
+<p>
 Please accept this letter as formal notice of my resignation from my position as {{jobTitle}} at {{company}}. My last working day will be {{lastWorkingDay}}.
+</p>
 
-{{gratitude}}
+<p>{{gratitude}}</p>
 
-{{transitionOffer}}
+<p>{{transitionOffer}}</p>
 
-Thank you for your support and understanding.
+<p>Thank you for your support and understanding.</p>
 
-Sincerely,
-{{employeeName}}
+<p>Sincerely,<br/>
+{{employeeName}}</p>
 `,
 };
 
