@@ -31,25 +31,35 @@ const characterCertificate: Template = {
     { name: "recipient", label: "Recipient (optional)", type: "text" },
   ],
   template: `
-{{organization}}
-{{orgAddress}}
+<p>{{organization}}<br/>
+{{orgAddress}}</p>
 
-Date: {{date}}
+<p>Date: {{date}}</p>
 
-{{recipient ? ("To, " + recipient + "\\n") : ""}
+<p>{{recipient}}</p>
 
-TO WHOM IT MAY CONCERN
+<p><strong>TO WHOM IT MAY CONCERN</strong></p>
 
-This is to certify that Mr./Ms. {{personName}} (ID: {{personId}}) has been a {{courseOrDesignation}} at {{organization}} for the period of {{duration}}.
+<p>
+This is to certify that Mr./Ms. {{personName}} (ID: {{personId}}) has been a
+{{courseOrDesignation}} at {{organization}} for the period of {{duration}}.
+</p>
 
-During this time, their conduct and character have been found to be exemplary. To the best of our knowledge, there is nothing adverse against them.
+<p>
+During this time, their conduct and character have been found to be exemplary.
+To the best of our knowledge, there is nothing adverse against them.
+</p>
 
+<p>
 This certificate is issued upon their request for whatever purpose it may serve.
+</p>
 
-Sincerely,
-{{issuerName}}
-{{issuerDesignation}}
+<p>
+Sincerely,<br/>
+{{issuerName}}<br/>
+{{issuerDesignation}}<br/>
 {{organization}}
+</p>
 `,
 };
 
