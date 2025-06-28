@@ -26,27 +26,32 @@ const leaveApplication: Template = {
     { name: "reason", label: "Reason for Leave", type: "textarea" },
   ],
   template: `
-To,
-The Head of Department
-{{departmentName}}
-{{universityName}}
+<p>To,<br/>
+The Head of Department<br/>
+{{departmentName}}<br/>
+{{universityName}}</p>
 
-Date: {{date}}
+<p>Date: {{date}}</p>
 
-Subject: Application for Leave of Absence
+<p><strong>Subject:</strong> Application for Leave of Absence</p>
 
-Respected Sir/Madam,
+<p>Respected Sir/Madam,</p>
 
+<p>
 I, {{studentName}} (Student ID: {{studentId}}), a student of the {{course}} program, hereby request leave of absence from {{startDate}} to {{endDate}} due to {{reason}}.
-Type of leave: {{leaveType}}
+</p>
 
+<p><strong>Type of leave:</strong> {{leaveType}}</p>
+
+<p>
 I assure you that I will complete all pending assignments and coursework immediately upon my return. I have attached supporting documents where applicable.
+</p>
 
-Thank you for considering my request.
+<p>Thank you for considering my request.</p>
 
-Sincerely,
-{{studentName}}
-Student ID: {{studentId}}
+<p>Sincerely,<br/>
+{{studentName}}<br/>
+Student ID: {{studentId}}</p>
 `,
 };
 
