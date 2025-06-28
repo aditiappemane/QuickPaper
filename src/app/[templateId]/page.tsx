@@ -3,7 +3,6 @@ import { useState, useMemo } from "react";
 import { notFound, useParams } from "next/navigation";
 import { templates } from "@/app/templates";
 import Header from "@/components/Header";
-// import Footer from "@/components/Footer";
 import FormRenderer from "@/components/FormRenderer";
 import PDFExporter from "@/components/PDFExporter";
 import Template from "../Template";
@@ -52,6 +51,7 @@ export default function TemplatePage() {
     values,
     templateData.fields
   );
+
   const previewLength = 300;
   const isLong = filled.replace(/<[^>]+>/g, "").length > previewLength;
 
@@ -71,9 +71,9 @@ export default function TemplatePage() {
   }
 
   return (
-    <div className="bg-gradient-to-br from-white via-slate-50 to-blue-50">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-white via-slate-50 to-blue-50">
       <Header />
-      <main className="min-h-screen flex flex-col">
+      <main className="flex-1">
         <Template>
           <motion.div
             initial={{ opacity: 0, filter: "blur(12px)" }}
@@ -106,34 +106,23 @@ export default function TemplatePage() {
                   {templateData.title}
                 </span>
               </div>
-              <motion.div
-                initial={{ opacity: 0, filter: "blur(8px)" }}
-                animate={{ opacity: 1, filter: "blur(0px)" }}
-                transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
-              >
+
+              <motion.div>
                 <h1 className="text-3xl font-bold text-gray-900 mb-2">
                   {templateData.title}
                 </h1>
                 <p className="text-gray-600">{templateData.description}</p>
               </motion.div>
-              <motion.div
-                initial={{ opacity: 0, filter: "blur(8px)" }}
-                animate={{ opacity: 1, filter: "blur(0px)" }}
-                transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
-                className="bg-white rounded-2xl shadow border border-gray-100 p-6"
-              >
+
+              <motion.div className="bg-white rounded-2xl shadow border border-gray-100 p-6">
                 <FormRenderer
                   fields={templateData.fields}
                   values={values}
                   onChange={setValues}
                 />
               </motion.div>
-              <motion.div
-                initial={{ opacity: 0, filter: "blur(8px)" }}
-                animate={{ opacity: 1, filter: "blur(0px)" }}
-                transition={{ duration: 0.7, delay: 0.45, ease: "easeOut" }}
-                className="flex flex-wrap gap-3"
-              >
+
+              <motion.div className="flex flex-wrap gap-3">
                 <button
                   onClick={() => setValues(initialState)}
                   className="flex items-center px-5 py-3 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-all font-medium"
@@ -148,8 +137,8 @@ export default function TemplatePage() {
               </motion.div>
             </motion.div>
 
-            {/* Fixed preview layout (replaced sticky with relative) */}
-            <div className="relative w-full max-w-xl mx-auto">
+            {/* Live Preview */}
+            <div className="sticky top-24 w-full max-w-xl mx-auto">
               <div className="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
                 <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-gradient-to-r from-blue-50/80 via-white/80 to-slate-50/80">
                   <h3 className="font-semibold text-gray-800 text-lg flex items-center gap-2">
@@ -180,7 +169,6 @@ export default function TemplatePage() {
                     exit={{ opacity: 0, filter: "blur(8px)" }}
                     transition={{ duration: 0.6 }}
                     className="p-8 whitespace-pre-line font-sans text-gray-800 leading-relaxed"
-                    style={{ minHeight: 340 }}
                   >
                     {filled ? (
                       <div
