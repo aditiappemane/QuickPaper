@@ -46,32 +46,32 @@ const businessLetter: Template = {
     },
   ],
   template: `
-{{senderName}}
-{{senderAddress}}
-{{senderCityStateZip}}
-Email: {{senderEmail}}
-Phone: {{senderPhone}}
+<p>{{senderName}}<br/>
+{{senderAddress}}<br/>
+{{senderCityStateZip}}<br/>
+Email: {{senderEmail}}<br/>
+Phone: {{senderPhone}}</p>
 
-Date: {{date}}
+<p>Date: {{date}}</p>
 
-{{recipientName}}
-{{recipientTitle}}
-{{company}}
-{{recipientAddress}}
-{{recipientCityStateZip}}
+<p>{{recipientName}}<br/>
+{{recipientTitle}}<br/>
+{{company}}<br/>
+{{recipientAddress}}<br/>
+{{recipientCityStateZip}}</p>
 
-Subject: {{subject}}
+<p><strong>Subject:</strong> {{subject}}</p>
 
-{{greeting}},
+<p>{{greeting}},</p>
 
-{{intro}}
+<p>{{intro}}</p>
 
-{{body}}
+<p>{{body}}</p>
 
-{{closing}}
+<p>{{closing}}</p>
 
-{{complimentaryClose}},
-{{senderName}}
+<p>{{complimentaryClose}},<br/>
+{{senderName}}</p>
 `,
 };
 
