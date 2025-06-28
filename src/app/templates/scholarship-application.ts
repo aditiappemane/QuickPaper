@@ -30,37 +30,39 @@ const scholarshipApplication: Template = {
     { name: "date", label: "Date", type: "date" },
   ],
   template: `
-{{studentName}}
-{{studentAddress}}
-Student ID: {{studentId}}
-Course: {{course}}
+<p>{{studentName}}<br/>
+{{studentAddress}}<br/>
+<strong>Student ID:</strong> {{studentId}}<br/>
+<strong>Course:</strong> {{course}}</p>
 
-Date: {{date}}
+<p><strong>Date:</strong> {{date}}</p>
 
-To,
-The Scholarship Committee
-{{institution}}
-{{institutionAddress}}
+<p>To,<br/>
+The Scholarship Committee<br/>
+{{institution}}<br/>
+{{institutionAddress}}</p>
 
-Subject: Application for {{scholarshipName}} for the Academic Year {{academicYear}}
+<p><strong>Subject:</strong> Application for {{scholarshipName}} for the Academic Year {{academicYear}}</p>
 
-Respected Sir/Madam,
+<p>Respected Sir/Madam,</p>
 
-I, {{studentName}}, am a student of {{course}} at {{institution}}. I am writing to apply for the {{scholarshipName}} for the academic year {{academicYear}}.
+<p>
+I, {{studentName}}, am a student of {{course}} at {{institution}}. I am writing to apply for the <strong>{{scholarshipName}}</strong> for the academic year {{academicYear}}.
+</p>
 
-Reason for applying:
-{{reason}}
+<p><strong>Reason for applying:</strong><br/>
+{{reason}}</p>
 
-Academic achievements:
-{{achievements}}
+<p><strong>Academic achievements:</strong><br/>
+{{achievements}}</p>
 
-My parent/guardian is employed as a {{parentOccupation}}, and our annual family income is ₹{{familyIncome}}. I have attached all required documents for your reference.
+<p>My parent/guardian is employed as a {{parentOccupation}}, and our annual family income is ₹{{familyIncome}}. I have attached all required documents for your reference.</p>
 
-I kindly request you to consider my application for the scholarship. Thank you for your time and consideration.
+<p>I kindly request you to consider my application for the scholarship. Thank you for your time and consideration.</p>
 
-Yours sincerely,
-{{studentName}}
-Student ID: {{studentId}}
+<p>Yours sincerely,<br/>
+{{studentName}}<br/>
+<strong>Student ID:</strong> {{studentId}}</p>
 `,
 };
 
