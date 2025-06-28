@@ -25,25 +25,35 @@ const experienceCertificate: Template = {
     { name: "date", label: "Date of Issue", type: "date" },
   ],
   template: `
-{{organization}}
-{{orgAddress}}
+<p>{{organization}}<br/>
+{{orgAddress}}</p>
 
-Date: {{date}}
+<p>Date: {{date}}</p>
 
-{{recipient ? ("To, " + recipient + "\\n") : ""}
+<p>{{recipient}}</p>
 
-To Whom It May Concern,
+<p><strong>To Whom It May Concern,</strong></p>
 
+<p>
 This is to certify that Mr./Ms. {{employeeName}} (Employee ID: {{employeeId}}) was employed with {{organization}} as a {{designation}} from {{joiningDate}} to {{relievingDate}}.
+</p>
 
-During their tenure, {{employeeName}} performed their duties diligently and maintained good conduct.{{remarks ? " " + remarks : ""}}
+<p>
+During their tenure, {{employeeName}} performed their duties diligently and maintained good conduct.
+</p>
 
+<p>{{remarks}}</p>
+
+<p>
 We wish {{employeeName}} all the best in their future endeavors.
+</p>
 
-Sincerely,
-{{issuerName}}
-{{issuerDesignation}}
+<p>
+Sincerely,<br/>
+{{issuerName}}<br/>
+{{issuerDesignation}}<br/>
 {{organization}}
+</p>
 `,
 };
 
