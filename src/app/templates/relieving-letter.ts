@@ -25,31 +25,37 @@ const relievingLetter: Template = {
     { name: "date", label: "Date of Issue", type: "date" },
   ],
   template: `
-{{company}}
-{{companyAddress}}
+<p>{{company}}<br/>
+{{companyAddress}}</p>
 
-Date: {{date}}
+<p>Date: {{date}}</p>
 
-To,
-{{employeeName}}
-{{employeeAddress}}
-Employee ID: {{employeeId}}
-{{designation}}, {{department}}
+<p>To,<br/>
+{{employeeName}}<br/>
+{{employeeAddress}}<br/>
+Employee ID: {{employeeId}}<br/>
+{{designation}}, {{department}}</p>
 
-Subject: Relieving Letter
+<p><strong>Subject:</strong> Relieving Letter</p>
 
-Dear {{employeeName}},
+<p>Dear {{employeeName}},</p>
 
+<p>
 This is to formally acknowledge receipt of your resignation and to confirm that you have been relieved from your duties as {{designation}} in the {{department}} department at {{company}}, effective from {{relievingDate}}.
+</p>
 
+<p>
 We appreciate your valuable contributions to the organization during your tenure from {{joiningDate}} to {{relievingDate}}. We wish you all the best in your future endeavors.
+</p>
 
+<p>
 If you require any further information, please feel free to contact us.
+</p>
 
-Sincerely,
-{{issuerName}}
-{{issuerDesignation}}
-{{company}}
+<p>Sincerely,<br/>
+{{issuerName}}<br/>
+{{issuerDesignation}}<br/>
+{{company}}</p>
 `,
 };
 
