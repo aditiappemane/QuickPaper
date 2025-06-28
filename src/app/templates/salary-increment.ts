@@ -25,34 +25,41 @@ const salaryIncrement: Template = {
     { name: "subject", label: "Subject (optional)", type: "text" },
   ],
   template: `
-{{employeeName}}
-{{employeeAddress}}
-Employee ID: {{employeeId}}
-{{designation}}, {{department}}
+<p>{{employeeName}}<br/>
+{{employeeAddress}}<br/>
+<strong>Employee ID:</strong> {{employeeId}}<br/>
+{{designation}}, {{department}}</p>
 
-Date: {{date}}
+<p><strong>Date:</strong> {{date}}</p>
 
-To,
-{{managerName}}
-{{designation}}
-{{company}}
-{{companyAddress}}
+<p>{{managerName}}<br/>
+{{designation}}<br/>
+{{company}}<br/>
+{{companyAddress}}</p>
 
-Subject: {{subject || "Request for Salary Increment"}}
+<p><strong>Subject:</strong> {{subject || "Request for Salary Increment"}}</p>
 
-Dear {{managerName}},
+<p>Dear {{managerName}},</p>
 
+<p>
 I am writing to formally request a review of my current salary. I have been working as a {{designation}} in the {{department}} department at {{company}}. My current salary is {{currentSalary}}.
+</p>
 
+<p>
 {{justification}}
+</p>
 
+<p>
 In light of my contributions and current market standards, I would like to request a salary increment to {{expectedSalary}}. I am confident that my performance and dedication justify this request.
+</p>
 
+<p>
 Thank you for considering my application. I look forward to your positive response.
+</p>
 
-Sincerely,
-{{employeeName}}
-Employee ID: {{employeeId}}
+<p>Sincerely,<br/>
+{{employeeName}}<br/>
+<strong>Employee ID:</strong> {{employeeId}}</p>
 `,
 };
 
