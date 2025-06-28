@@ -21,6 +21,9 @@ import professionalReferenceLetter from "./professional-reference-letter";
 import referenceLetter from "./reference-letter";
 import jobOfferAcceptance from "./job-offer-acceptance";
 import professionalLeaveApplication from "./professional-leave-application";
+import coverLetter from "./cover-letter";
+import meetingMinutes from "./meeting-minutes";
+import complaintLetter from "./complaint-letter";
 
 const templates = [
   leaveApplication,
@@ -46,6 +49,9 @@ const templates = [
   referenceLetter,
   jobOfferAcceptance,
   professionalLeaveApplication,
+  coverLetter,
+  meetingMinutes,
+  complaintLetter,
 ];
 
 export { templates };
