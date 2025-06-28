@@ -23,31 +23,39 @@ const offerLetter: Template = {
     { name: "date", label: "Date", type: "date" },
   ],
   template: `
-{{company}}
-{{companyAddress}}
+<p>{{company}}<br/>
+{{companyAddress}}</p>
 
-Date: {{date}}
+<p>Date: {{date}}</p>
 
-To,
-{{candidateName}}
-{{candidateAddress}}
+<p>To,<br/>
+{{candidateName}}<br/>
+{{candidateAddress}}</p>
 
-Subject: Offer of Employment (Ref: {{offerReference}})
+<p><strong>Subject:</strong> Offer of Employment (Ref: {{offerReference}})</p>
 
-Dear {{candidateName}},
+<p>Dear {{candidateName}},</p>
 
+<p>
 We are pleased to offer you the position of {{position}} at {{company}}. Your skills and experience will be a valuable addition to our team.
+</p>
 
+<p>
 Your employment will commence on {{joiningDate}}. The annual compensation for this role will be {{salary}}. Further details regarding benefits, reporting structure, and company policies will be provided upon your joining.
+</p>
 
+<p>
 Please confirm your acceptance of this offer by replying to this email or contacting our HR representative, {{hrContact}}, at {{hrEmail}}.
+</p>
 
+<p>
 We look forward to welcoming you to {{company}}.
+</p>
 
-Sincerely,
-{{hrContact}}
-HR Department
-{{company}}
+<p>Sincerely,<br/>
+{{hrContact}}<br/>
+HR Department<br/>
+{{company}}</p>
 `,
 };
 
