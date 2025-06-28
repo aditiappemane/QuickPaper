@@ -37,33 +37,39 @@ const recommendationLetter: Template = {
     },
   ],
   template: `
-{{requesterName}}
-{{requesterAddress}}
-{{contactInfo}}
+<p>{{requesterName}}<br/>
+{{requesterAddress}}<br/>
+{{contactInfo}}</p>
 
-Date: {{date}}
+<p>Date: {{date}}</p>
 
-To,
-{{recipientName}}
-{{recipientTitle}}
-{{recipientAddress}}
+<p>To,<br/>
+{{recipientName}}<br/>
+{{recipientTitle}}<br/>
+{{recipientAddress}}</p>
 
-Subject: {{subject || "Request for Recommendation Letter"}}
+<p><strong>Subject:</strong> {{subject || "Request for Recommendation Letter"}}</p>
 
-Dear {{recipientName}},
+<p>Dear {{recipientName}},</p>
 
+<p>
 I hope this message finds you well. I am writing to kindly request a letter of recommendation from you, as my {{relationship}}, for the purpose of {{purpose}}.
+</p>
 
-During our association of {{duration}}, I have strived to demonstrate qualities such as:
+<p>
+During our association of {{duration}}, I have strived to demonstrate qualities such as:<br/>
 {{achievements}}
+</p>
 
+<p>
 Your recommendation would greatly enhance my application and provide valuable insight into my skills and character. If you need any additional information, please let me know.
+</p>
 
-Thank you very much for considering my request.
+<p>Thank you very much for considering my request.</p>
 
-Sincerely,
-{{requesterName}}
-{{contactInfo}}
+<p>Sincerely,<br/>
+{{requesterName}}<br/>
+{{contactInfo}}</p>
 `,
 };
 
