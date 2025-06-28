@@ -10,6 +10,7 @@ import Link from "next/link";
 import { FiChevronDown, FiChevronUp, FiHome } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
 import CopyTextButton from "@/components/CopyTextButton";
+import Footer from "@/components/Footer";
 
 function fillTemplate(
   template: string,
@@ -188,6 +189,7 @@ export default function TemplatePage() {
           </motion.div>
         </Template>
       </main>
+      <Footer />
     </div>
   );
 }
