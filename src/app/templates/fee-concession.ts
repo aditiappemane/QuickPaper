@@ -26,30 +26,36 @@ const feeConcession: Template = {
     { name: "familyIncome", label: "Annual Family Income (₹)", type: "number" },
   ],
   template: `
-To,
-The Principal
-{{institutionName}}
-{{institutionAddress}}
+<p>To,<br/>
+The Principal<br/>
+{{institutionName}}<br/>
+{{institutionAddress}}</p>
 
-Date: {{date}}
+<p>Date: {{date}}</p>
 
-Subject: Application for Fee Concession
+<p><strong>Subject:</strong> Application for Fee Concession</p>
 
-Respected Sir/Madam,
+<p>Respected Sir/Madam,</p>
 
+<p>
 I, {{studentName}} (Student ID: {{studentId}}), am a student of {{course}} for the academic year {{academicYear}} at your esteemed institution. I am writing to request a concession in my academic fees due to the following reason:
+</p>
 
-{{reason}}
+<p>{{reason}}</p>
 
+<p>
 My parent/guardian is employed as a {{parentOccupation}}, and our annual family income is ₹{{familyIncome}}. Due to financial constraints, I am unable to pay the full fees.
+</p>
 
+<p>
 I kindly request you to consider my application and grant me a fee concession. I have attached all necessary supporting documents for your reference.
+</p>
 
-Thank you for your understanding and support.
+<p>Thank you for your understanding and support.</p>
 
-Yours faithfully,
-{{studentName}}
-Student ID: {{studentId}}
+<p>Yours faithfully,<br/>
+{{studentName}}<br/>
+Student ID: {{studentId}}</p>
 `,
 };
 
