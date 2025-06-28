@@ -53,14 +53,8 @@ export default function TemplatePage() {
     templateData.fields
   );
 
-  const formattedText = filled.replace(/<[^>]+>/g, "").replace(/\n/g, "\n\n");
-
   const previewLength = 300;
   const isLong = filled.replace(/<[^>]+>/g, "").length > previewLength;
-
-  const allFieldsFilled = templateData.fields.every(
-    (f) => values[f.name].trim() !== ""
-  );
 
   function getPreview(html: string) {
     const text = html.replace(/<[^>]+>/g, "");
@@ -136,11 +130,11 @@ export default function TemplatePage() {
                 >
                   Reset Form
                 </button>
-                <CopyTextButton textToCopy={formattedText} />
+                <CopyTextButton textToCopy={filled.replace(/<[^>]+>/g, "")} />
                 <PDFExporter
                   content={filled}
                   fileName={`${templateData.title}.pdf`}
-                  disabled={!allFieldsFilled}
+                  disabled={Object.values(values).some((v) => !v.trim())}
                 />
               </motion.div>
             </motion.div>
