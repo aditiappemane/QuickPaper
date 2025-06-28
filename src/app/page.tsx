@@ -270,7 +270,7 @@ export default function HomePage() {
                     className="w-full"
                   >
                     <Link
-                      href={`/templates/${t.id}`}
+                      href={`/${t.id}`}
                       className="group flex flex-col items-center justify-center bg-white border border-gray-100 rounded-xl shadow hover:shadow-xl transition-all hover:-translate-y-1 px-2 py-3 sm:px-3 sm:py-4 w-full min-h-[120px] sm:min-h-[150px]"
                       style={{ minHeight: 0, minWidth: 0 }}
                     >
