@@ -22,27 +22,33 @@ const noObjectionCertificate: Template = {
     { name: "date", label: "Date", type: "date" },
   ],
   template: `
-{{organization}}
-{{orgAddress}}
+<p>{{organization}}<br/>
+{{orgAddress}}</p>
 
-Date: {{date}}
+<p>Date: {{date}}</p>
 
-{{recipient ? ("To, " + recipient + "\\n") : ""}
+<p>{{recipient ? ("To, " + recipient + "<br/>") : ""}}</p>
 
-Subject: No Objection Certificate
+<p><strong>Subject:</strong> No Objection Certificate</p>
 
-To Whom It May Concern,
+<p><strong>To Whom It May Concern,</strong></p>
 
+<p>
 This is to certify that Mr./Ms. {{applicantName}} (ID: {{applicantId}}) has been associated with {{organization}}, and we have no objection to {{purpose}}.
+</p>
 
+<p>
 This certificate is being issued at the request of the applicant for whatever purpose it may serve.
+</p>
 
+<p>
 If you require any further information, please feel free to contact us.
+</p>
 
-Sincerely,
-{{issuerName}}
-{{issuerDesignation}}
-{{organization}}
+<p>Sincerely,<br/>
+{{issuerName}}<br/>
+{{issuerDesignation}}<br/>
+{{organization}}</p>
 `,
 };
 
