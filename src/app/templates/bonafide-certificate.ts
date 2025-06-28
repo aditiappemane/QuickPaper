@@ -19,28 +19,32 @@ const bonafideCertificate: Template = {
     { name: "purpose", label: "Purpose for Certificate", type: "textarea" },
   ],
   template: `
-To,
-The Principal
-{{institutionName}}
-{{institutionAddress}}
+<p>To,<br/>
+The Principal<br/>
+{{institutionName}}<br/>
+{{institutionAddress}}</p>
 
-Date: {{date}}
+<p>Date: {{date}}</p>
 
-Subject: Request for Bonafide Certificate
+<p><strong>Subject:</strong> Request for Bonafide Certificate</p>
 
-Respected Sir/Madam,
+<p>Respected Sir/Madam,</p>
 
+<p>
 I, {{studentName}} (Student ID: {{studentId}}), am a student of {{course}} at your esteemed institution. I kindly request you to issue a bonafide certificate for the following purpose:
+</p>
 
-{{purpose}}
+<p>{{purpose}}</p>
 
+<p>
 I would appreciate it if you could process my request at the earliest. Please let me know if any further information or documentation is required.
+</p>
 
-Thank you for your assistance.
+<p>Thank you for your assistance.</p>
 
-Yours sincerely,
-{{studentName}}
-Student ID: {{studentId}}
+<p>Yours sincerely,<br/>
+{{studentName}}<br/>
+Student ID: {{studentId}}</p>
 `,
 };
 
