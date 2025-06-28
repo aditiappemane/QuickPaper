@@ -46,35 +46,41 @@ const professionalReferenceLetter: Template = {
     { name: "conclusion", label: "Closing Endorsement", type: "textarea" },
   ],
   template: `
-{{referrerName}}
-{{referrerPosition}}
-{{referrerCompany}}
-{{referrerAddress}}
-Contact: {{referrerContact}}
+<p>{{referrerName}}<br/>
+{{referrerPosition}}<br/>
+{{referrerCompany}}<br/>
+{{referrerAddress}}<br/>
+Contact: {{referrerContact}}</p>
 
-Date: {{date}}
+<p>Date: {{date}}</p>
 
-{{recipientName}}
-{{recipientPosition}}
-{{recipientCompany}}
-{{recipientAddress}}
+<p>{{recipientName}}<br/>
+{{recipientPosition}}<br/>
+{{recipientCompany}}<br/>
+{{recipientAddress}}</p>
 
-Subject: {{subject || ("Professional Reference for " + candidateName)}}
+<p><strong>Subject:</strong> {{subject || ("Professional Reference for " + candidateName)}}</p>
 
-Dear {{recipientName}},
+<p>Dear {{recipientName}},</p>
 
+<p>
 I am pleased to provide this reference for {{candidateName}}, whom I have known as a {{relationship}} for the past {{duration}}.
+</p>
 
+<p>
 During this time, {{candidateName}} consistently demonstrated {{skills}}. For example, {{achievements}}
+</p>
 
+<p>
 I am confident that {{candidateName}} will bring the same level of commitment and excellence to your organization. {{conclusion}}
+</p>
 
-If you require any further information, please feel free to contact me.
+<p>If you require any further information, please feel free to contact me.</p>
 
-Sincerely,
-{{referrerName}}
-{{referrerPosition}}
-{{referrerCompany}}
+<p>Sincerely,<br/>
+{{referrerName}}<br/>
+{{referrerPosition}}<br/>
+{{referrerCompany}}</p>
 `,
 };
 
