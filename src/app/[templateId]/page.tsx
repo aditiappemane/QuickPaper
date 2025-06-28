@@ -53,8 +53,16 @@ export default function TemplatePage() {
     templateData.fields
   );
 
+  const allFieldsFilled = Object.values(values).every((v) => v.trim() !== "");
+
+  const formattedText = filled
+    .replace(/<[^>]+>/g, "")
+    .replace(/(?:\r\n|\r|\n)/g, "\n")
+    .replace(/ +/g, " ")
+    .trim();
+
   const previewLength = 300;
-  const isLong = filled.replace(/<[^>]+>/g, "").length > previewLength;
+  const isLong = formattedText.length > previewLength;
 
   function getPreview(html: string) {
     const text = html.replace(/<[^>]+>/g, "");
@@ -130,11 +138,13 @@ export default function TemplatePage() {
                 >
                   Reset Form
                 </button>
-                <CopyTextButton textToCopy={filled.replace(/<[^>]+>/g, "")} />
-                <PDFExporter
-                  content={filled}
-                  fileName={`${templateData.title}.pdf`}
-                />
+                <CopyTextButton textToCopy={formattedText} />
+                {allFieldsFilled && (
+                  <PDFExporter
+                    content={formattedText}
+                    fileName={`${templateData.title}.pdf`}
+                  />
+                )}
               </motion.div>
             </motion.div>
 
